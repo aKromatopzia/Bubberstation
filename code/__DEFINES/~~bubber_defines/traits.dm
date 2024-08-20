@@ -13,6 +13,3 @@
 
 //For the hemophage quirk that allows hemophages to eat/drink normal food/drink.
 #define TRAIT_MASQUERADE_FOOD "masquerade_food"
-
-//basic security hud
-#define TRAIT_BASIC_SECURITY_HUD "basic_security_hud"

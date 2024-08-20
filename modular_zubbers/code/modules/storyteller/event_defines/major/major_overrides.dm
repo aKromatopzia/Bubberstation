@@ -61,7 +61,3 @@
 /datum/round_event_control/fugitives
 	track = EVENT_TRACK_MAJOR
 	tags = list(TAG_COMBAT)
-
-/datum/round_event_control/voidwalker
-	track = EVENT_TRACK_MAJOR
-	tags = list(TAG_COMBAT, TAG_SPOOKY, TAG_SPACE)

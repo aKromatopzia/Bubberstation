@@ -417,8 +417,7 @@
 			for(var/obj/item/dispensed_item in src)
 				if(desired <= 0)
 					break
-				var/item_name = "[dispensed_item.type]-[replacetext(replacetext(dispensed_item.name, "\proper", ""), "\improper", "")]"
-				if(params["path"] == item_name)
+				if(params["path"] == "[dispensed_item.type]-[dispensed_item.name]")
 					if(dispensed_item in component_parts)
 						CRASH("Attempted removal of [dispensed_item] component_part from smartfridge via smartfridge interface.")
 					//dispense the item
