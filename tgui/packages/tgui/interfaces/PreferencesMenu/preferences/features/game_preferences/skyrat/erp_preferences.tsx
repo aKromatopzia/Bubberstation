@@ -53,14 +53,19 @@ export const sextoy_sounds_pref: FeatureToggle = {
   component: CheckboxInput,
 };
 
-// BUBBER EDIT START: Mechanical vore prefs replace pred/prey
-export const vore_enable_pref: FeatureToggle = {
-  name: 'Enable Mechanical Vore',
+export const vore_pred_pref: FeatureToggle = {
+  name: 'Vore - Pred',
   category: 'ERP',
-  description: 'Toggles if you are able to use vore mechanics.',
+  description: 'Toggles if you are able to use vore mechanics on others.',
   component: CheckboxInput,
 };
-// BUBBER EDIT END
+
+export const vore_prey_pref: FeatureToggle = {
+  name: 'Vore - Prey',
+  category: 'ERP',
+  description: 'Toggles if others are able to use vore mechanics on you',
+  component: CheckboxInput,
+};
 
 export const breast_enlargement_pref: FeatureToggle = {
   name: 'Breast enlargement',
