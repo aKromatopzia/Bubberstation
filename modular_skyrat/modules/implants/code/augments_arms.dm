@@ -12,7 +12,7 @@
 #define CUTTER_WOUND_BONUS 0
 #define ENHANCED_KNIFE_FORCE 15
 #define ENHANCED_KNIFE_WOUND_BONUS 15
-#define ENHANCED_KNIFE_ARMOR_PENETRATION 10
+#define ENHANCED_KNIFE_ARMOUR_PENETRATION 10
 
 /obj/item/melee/implantarmblade
 	name = "implanted arm blade"
@@ -105,7 +105,7 @@
 
 	knife_force = ENHANCED_KNIFE_FORCE
 	knife_wound_bonus = ENHANCED_KNIFE_WOUND_BONUS
-	armour_penetration = ENHANCED_KNIFE_ARMOR_PENETRATION //Let's give them some AP for the trouble.
+	armour_penetration = ENHANCED_KNIFE_ARMOUR_PENETRATION //Let's give them some AP for the trouble.
 
 	if(tool_behaviour == TOOL_KNIFE)
 		force = knife_force
@@ -233,4 +233,4 @@
 #undef CUTTER_WOUND_BONUS
 #undef ENHANCED_KNIFE_FORCE
 #undef ENHANCED_KNIFE_WOUND_BONUS
-#undef ENHANCED_KNIFE_ARMOR_PENETRATION
+#undef ENHANCED_KNIFE_ARMOUR_PENETRATION
