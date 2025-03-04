@@ -2244,7 +2244,7 @@
 
 /datum/sprite_accessory/moth_antennae //Finally splitting the sprite
 	icon = 'icons/mob/human/species/moth/moth_antennae.dmi'
-	color_src = null
+	//BUBBER EDIT - Moved to skyrat: color_src = null
 
 /datum/sprite_accessory/moth_antennae/plain
 	name = "Plain"
