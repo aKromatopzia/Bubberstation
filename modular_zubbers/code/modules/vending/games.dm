@@ -27,6 +27,7 @@
 				/obj/item/toy/plush/chirp_plush = 3,
 				/obj/item/toy/plush/bigdeer = 3,
 				/obj/item/toy/plush/bubbledragon = 3,
+				/obj/item/toy/plush/tian_plush = 3,
 				/obj/item/toy/plush/headcrab = 3,
 				/obj/item/toy/plush/bellybird = 3,
 				/obj/item/toy/plush/tiredtesh = 3,
@@ -92,6 +93,8 @@
 				/obj/item/toy/plush/skyrat/plushie_synthia = 3,
 				/obj/item/toy/plush/skyrat/jecca = 3,
 				/obj/item/toy/plush/skyrat/courier_synth = 3,
+				/obj/item/toy/plush/androiddog = 3,
+				/obj/item/toy/plush/mothroach_plush = 3,
 			),
 		),
 
@@ -111,6 +114,7 @@
 				/obj/item/holosign_creator/hardlight_wheelchair = 3,
 				/obj/item/instrument/piano_synth/headphones/catear_headphone = 3,
 				/obj/item/clothing/accessory/pocketwatch = 3,
+				/obj/item/toy/nyamagotchi = 3,
 			),
 		)
 	)

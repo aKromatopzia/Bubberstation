@@ -1,6 +1,6 @@
 /obj/item/market_uplink
 	name = "\improper Market Uplink"
-	desc = "An market uplink. Usable with markets. You probably shouldn't have this!"
+	desc = "A market uplink. Usable with markets. You probably shouldn't have this!"
 	icon = 'icons/obj/devices/blackmarket.dmi'
 	icon_state = "uplink"
 
@@ -98,7 +98,7 @@
 		))
 	return data
 
-/obj/item/market_uplink/ui_act(action, params)
+/obj/item/market_uplink/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
 	if(.)
 		return

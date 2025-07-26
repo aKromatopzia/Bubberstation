@@ -14,8 +14,8 @@
 	stamina = 15 //knock the winds outta ya
 
 	wound_bonus = -35
-	bare_wound_bonus = -60
-	stamina_falloff_tile = 0.3
+	exposed_wound_bonus = -60
+	stamina_falloff_tile = -0.3
 
 /obj/item/ammo_casing/c460rowland/dart
 	name = ".460 Rowland Armour Piercing bullet casing"
@@ -31,7 +31,7 @@
 	damage = 25
 
 	wound_bonus = -50
-	bare_wound_bonus = -10
+	exposed_wound_bonus = -10
 	armour_penetration = 40
 	damage_falloff_tile = 0
 	stamina_falloff_tile = 0
@@ -52,7 +52,7 @@
 	name = ".457 Government"
 	damage = 35
 	wound_bonus = -25
-	bare_wound_bonus = -35
+	exposed_wound_bonus = -35
 
 /obj/item/ammo_casing/c457govt/dart
 	name = ".457 Government Accelerating"
@@ -68,7 +68,7 @@
 	damage = 15
 
 	wound_bonus = -10
-	bare_wound_bonus = -10
+	exposed_wound_bonus = -10
 	armour_penetration = 45
-	speed = 0.5
+	speed = 2
 	range = 14

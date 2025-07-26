@@ -1,4 +1,4 @@
-/obj/item/organ/external/wings/moth
+/obj/item/organ/wings/moth
 	name = "moth wings"
 	desc = "A pair of fuzzy moth wings."
 	flight_for_species = list(SPECIES_MOTH)
@@ -7,7 +7,7 @@
 	///Our associated terrorize spell, for antagonist nightmares
 	var/datum/action/cooldown/spell/moth_and_dash/our_dash
 
-/obj/item/organ/external/wings/moth/on_mob_insert(mob/living/carbon/organ_owner, special, movement_flags)
+/obj/item/organ/wings/moth/on_mob_insert(mob/living/carbon/organ_owner, special, movement_flags)
 	. = ..()
 
 	if(ismoth(organ_owner))
@@ -17,7 +17,7 @@
 		our_dash = new(organ_owner)
 		our_dash.Grant(organ_owner)
 
-/obj/item/organ/external/wings/moth/on_mob_remove(mob/living/carbon/organ_owner)
+/obj/item/organ/wings/moth/on_mob_remove(mob/living/carbon/organ_owner)
 	. = ..()
 	QDEL_NULL(our_climb)
 	QDEL_NULL(our_dash)
@@ -47,7 +47,7 @@
 		to_chat(owner, span_warning("There's far too little air for your wings to work against!"))
 		return
 
-	if(owner.incapacitated())
+	if(owner.incapacitated)
 		return
 
 	if(!COOLDOWN_FINISHED(src, dash_cooldown))
@@ -58,7 +58,7 @@
 
 	ADD_TRAIT(owner, TRAIT_MOVE_FLOATING, LEAPING_TRAIT)
 	if (owner.throw_at(dash_target, jumpdistance, jumpspeed, spin = FALSE, diagonals_first = TRUE, callback = TRAIT_CALLBACK_REMOVE(owner, TRAIT_MOVE_FLOATING, LEAPING_TRAIT)))
-		playsound(owner, 'sound/voice/moth/moth_flutter.ogg', 50, TRUE, TRUE)
+		playsound(owner, 'sound/mobs/humanoids/moth/moth_flutter.ogg', 50, TRUE, TRUE)
 		owner.visible_message(span_warning("[usr] propels themselves forwards with a heavy wingbeat!"))
 		COOLDOWN_START(src, dash_cooldown, 6 SECONDS)
 		var/mob/living/dash_user = owner
@@ -69,7 +69,7 @@
 
 /datum/emote/living/mothic_dash
 	key = "mdash"
-	key_third_person = "mdash"
+	key_third_person = "mothdash"
 	cooldown = 6 SECONDS
 
 /datum/emote/living/mothic_dash/run_emote(mob/living/user, params, type_override, intentional)
@@ -102,7 +102,7 @@
 	climb_time = 2.5 SECONDS
 	force = 0
 	throwforce = 0
-	climbsound = 'sound/voice/moth/moth_flutter.ogg'
+	climbsound = 'sound/mobs/humanoids/moth/moth_flutter.ogg'
 
 /obj/item/climbing_hook/climbing_moth_wings/ranged_interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	var/turf/check_turf = get_turf(user)

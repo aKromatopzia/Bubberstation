@@ -157,7 +157,8 @@
 	mergeable_decal = FALSE
 	resistance_flags = FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	clean_type = CLEAN_TYPE_HARD_DECAL
-	layer = SIGIL_LAYER
+	plane = FLOOR_PLANE
+	layer = RUNE_LAYER
 	var/slip_time = 6 SECONDS
 	var/slip_flags = NO_SLIP_WHEN_WALKING
 
@@ -170,7 +171,7 @@
 	/// Timer until the rune can be cleaned up off the floor
 	var/protected_timer
 
-/obj/effect/decal/cleanable/traitor_rune/traitor/Destroy()
+/obj/effect/decal/cleanable/traitor_rune/Destroy()
 	deltimer(protected_timer)
 	QDEL_NULL(demoraliser)
 	return ..()
@@ -222,7 +223,7 @@
 
 /obj/effect/decal/cleanable/traitor_rune/wash(clean_types)
 	if (clean_proof)
-		return FALSE
+		return NONE
 
 	return ..()
 

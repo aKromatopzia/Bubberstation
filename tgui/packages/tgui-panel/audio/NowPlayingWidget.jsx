@@ -4,9 +4,9 @@
  * @license MIT
  */
 
-import { toFixed } from 'common/math';
 import { useDispatch, useSelector } from 'tgui/backend';
-import { Button, Collapsible, Flex, Knob, Section } from 'tgui/components';
+import { Button, Collapsible, Flex, Knob, Section } from 'tgui-core/components';
+import { toFixed } from 'tgui-core/math';
 
 import { useSettings } from '../settings';
 import { selectAudio } from './selectors';
@@ -46,7 +46,7 @@ export const NowPlayingWidget = (props) => {
               <Section>
                 {URL !== 'Song Link Hidden' && (
                   <Flex.Item grow={1} color="label">
-                    URL: {URL}
+                    URL: <a href={URL}>{URL}</a>
                   </Flex.Item>
                 )}
                 <Flex.Item grow={1} color="label">
@@ -98,8 +98,8 @@ export const NowPlayingWidget = (props) => {
           value={settings.adminMusicVolume}
           step={0.0025}
           stepPixelSize={1}
-          format={(value) => toFixed(value * 100) + '%'}
-          onDrag={(e, value) =>
+          format={(value) => `${toFixed(value * 100)}%`}
+          onChange={(e, value) =>
             settings.update({
               adminMusicVolume: value,
             })

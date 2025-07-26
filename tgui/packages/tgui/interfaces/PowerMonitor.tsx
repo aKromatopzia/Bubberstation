@@ -12,12 +12,12 @@ import {
   Stack,
   Table,
 } from 'tgui-core/components';
+import { Tooltip } from 'tgui-core/components';
 import { toFixed } from 'tgui-core/math';
 
 import { useBackend } from '../backend';
-import { Tooltip } from '../components';
 import { Window } from '../layouts';
-import { LoadingScreen } from './common/LoadingToolbox';
+import { LoadingScreen } from './common/LoadingScreen';
 
 type Data = {
   areas: Area[];
@@ -111,7 +111,7 @@ export function PowerMonitorContent(props) {
                     maxValue={maxValue}
                     color="teal"
                   >
-                    {toFixed(supply / 1000) + ' kW'}
+                    {`${toFixed(supply / 1000)} kW`}
                   </ProgressBar>
                 </LabeledList.Item>
                 <LabeledList.Item label="Draw">
@@ -121,7 +121,7 @@ export function PowerMonitorContent(props) {
                     maxValue={maxValue}
                     color="pink"
                   >
-                    {toFixed(demand / 1000) + ' kW'}
+                    {`${toFixed(demand / 1000)} kW`}
                   </ProgressBar>
                 </LabeledList.Item>
               </LabeledList>
@@ -290,7 +290,7 @@ export function AreaCharge(props: AreaChargeProps) {
         }
       />
       <Box inline width="36px" textAlign="right">
-        {toFixed(charge) + '%'}
+        {`${toFixed(charge)}%`}
       </Box>
     </>
   );
@@ -305,7 +305,7 @@ function AreaStatusColorBox(props: AreaStatusColorBoxProps) {
 
   const power = Boolean(status & 2);
   const mode = Boolean(status & 1);
-  const tooltipText = (power ? 'On' : 'Off') + ` [${mode ? 'auto' : 'manual'}]`;
+  const tooltipText = `${power ? 'On' : 'Off'} [${mode ? 'auto' : 'manual'}]`;
 
   return (
     <Tooltip content={tooltipText}>

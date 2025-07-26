@@ -1,11 +1,11 @@
 import { useBackend, useLocalState } from '../../backend';
-import { Button, LabeledList, Section, Stack } from '../../components';
+import { Button, LabeledList, Section, Stack } from 'tgui-core/components';
 
 export const TaskManager = (props) => {
   const { act, data } = useBackend();
   const [, setToCall] = useLocalState('toCallTaskInfo');
   const [, setModal] = useLocalState('modal');
-  let { tasks } = data;
+  const { tasks } = data;
   tasks?.sort((a, b) => {
     if (a.status < b.status) {
       return -1;

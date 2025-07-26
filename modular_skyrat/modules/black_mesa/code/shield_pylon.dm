@@ -17,7 +17,7 @@
 		shielded = FALSE
 		update_appearance()
 
-/mob/living/simple_animal/hostile/blackmesa/xen/apply_damage(damage = 0, damagetype = BRUTE, def_zone = null, blocked = FALSE, forced = FALSE, spread_damage = FALSE, wound_bonus = 0, bare_wound_bonus = 0, sharpness = NONE, attack_direction = null, attacking_item)
+/mob/living/simple_animal/hostile/blackmesa/xen/apply_damage(damage = 0, damagetype = BRUTE, def_zone = null, blocked = FALSE, forced = FALSE, spread_damage = FALSE, wound_bonus = 0, exposed_wound_bonus = 0, sharpness = NONE, attack_direction = null, attacking_item)
 	if(shielded)
 		balloon_alert_to_viewers("ineffective!")
 		return FALSE
@@ -91,6 +91,6 @@
 		shielded_mobs[iterating_mob] = null
 		shielded_mobs -= iterating_mob
 	shielded_mobs = null
-	playsound(src, 'sound/magic/lightningbolt.ogg', 100, TRUE)
+	playsound(src, 'sound/effects/magic/lightningbolt.ogg', 100, TRUE)
 	new /obj/item/grenade/xen_crystal(get_turf(src))
 	return ..()

@@ -21,10 +21,10 @@
 	icon_state = "black"
 	w_class = WEIGHT_CLASS_NORMAL
 	spread = 10
-	fire_sound = 'sound/weapons/gun/pistol/shot_alt.ogg'
-	rack_sound = 'sound/weapons/gun/pistol/rack.ogg'
-	lock_back_sound = 'sound/weapons/gun/pistol/slide_lock.ogg'
-	bolt_drop_sound = 'sound/weapons/gun/pistol/slide_drop.ogg'
+	fire_sound = 'sound/items/weapons/gun/pistol/shot_alt.ogg'
+	rack_sound = 'sound/items/weapons/gun/pistol/rack.ogg'
+	lock_back_sound = 'sound/items/weapons/gun/pistol/slide_lock.ogg'
+	bolt_drop_sound = 'sound/items/weapons/gun/pistol/slide_drop.ogg'
 	pin = /obj/item/firing_pin
 	spawn_magazine_type = /obj/item/ammo_box/magazine/m9mm/rubber
 	suppressor_x_offset = -2
@@ -77,15 +77,15 @@
 
 /obj/item/gun/ballistic/automatic/pistol/firefly
 	name = "\improper MX-7C 'Firefly'"
-	desc = "NanoTrasen Experimental Model 7 Compact, A rare pistol chambered in a .117 electrode cartridge. It has has a small magazine capacity."
+	desc = "Nanotrasen Experimental Model 7 Compact, A rare pistol chambered in a .117 electrode cartridge. It has has a small magazine capacity."
 	icon = 'modular_skyrat/modules/modular_weapons/icons/obj/company_and_or_faction_based/nanotrasen_system_inc/pistol.dmi'
 	icon_state = "firefly"
 	w_class = WEIGHT_CLASS_NORMAL
 	spread = 10
-	fire_sound = 'sound/weapons/gun/pistol/shot_alt.ogg'
-	rack_sound = 'sound/weapons/gun/pistol/rack.ogg'
-	lock_back_sound = 'sound/weapons/gun/pistol/slide_lock.ogg'
-	bolt_drop_sound = 'sound/weapons/gun/pistol/slide_drop.ogg'
+	fire_sound = 'sound/items/weapons/gun/pistol/shot_alt.ogg'
+	rack_sound = 'sound/items/weapons/gun/pistol/rack.ogg'
+	lock_back_sound = 'sound/items/weapons/gun/pistol/slide_lock.ogg'
+	bolt_drop_sound = 'sound/items/weapons/gun/pistol/slide_drop.ogg'
 	pin = /obj/item/firing_pin
 	spawn_magazine_type = /obj/item/ammo_box/magazine/firefly
 	accepted_magazine_type = /obj/item/ammo_box/magazine/firefly

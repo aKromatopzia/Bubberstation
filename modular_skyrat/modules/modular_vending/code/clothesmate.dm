@@ -44,7 +44,9 @@
 				/obj/item/clothing/glasses/regular/betterunshit = 5,
 				/obj/item/clothing/glasses/thin = 5,
 				/obj/item/clothing/glasses/hud/ar/projector = 5,
+				/obj/item/clothing/glasses/hud/civilian = 5,
 				/obj/item/clothing/neck/face_scarf = 5,
+				/obj/item/clothing/neck/scarf/pride = 5, //BUBBER EDIT: ADDS PRIDE SCARVES
 				/obj/item/clothing/gloves/bracer/wraps,
 			),
 		),
@@ -71,6 +73,10 @@
 				/obj/item/clothing/under/tachawaiian/purple = 5,
 				/obj/item/clothing/under/tachawaiian/green = 5,
 				/obj/item/clothing/under/tachawaiian/blue = 5,
+				// BUBBER EDIT START - Tojo's Outfits Clothesmate Definitions
+				/obj/item/clothing/under/red_and_white_collared_outfit = 5,
+				// BUBBER EDIT END
+
 				/obj/item/clothing/under/suit/skyrat/black_really_collared = 3,
 				/obj/item/clothing/under/suit/skyrat/black_really_collared/skirt = 3,
 				/obj/item/clothing/under/suit/skyrat/pencil = 3,

@@ -1,11 +1,11 @@
-import { BooleanLike } from 'common/react';
 import { useState } from 'react';
+import { Box, Button, Image, Section, Stack, Tabs } from 'tgui-core/components';
+import type { BooleanLike } from 'tgui-core/react';
 
 import { resolveAsset } from '../assets';
 import { useBackend } from '../backend';
-import { Box, Button, Image, Section, Stack, Tabs } from '../components';
 import { Window } from '../layouts';
-import { Objective } from './common/Objectives';
+import type { Objective } from './common/Objectives';
 import { PowerDetails } from './PowerInfo';
 
 export type ClanProps = {
@@ -29,7 +29,7 @@ export type BloodsuckerProps = {
   powers: PowerInfo[];
   objectives: Objective[];
 };
-export type VassalProps = BloodsuckerProps & {
+export type GhoulProps = BloodsuckerProps & {
   title: string;
   description: string;
 };
@@ -131,7 +131,7 @@ const BloodsuckerIntro = () => {
         <Section fill title="Items">
           <Stack vertical>
             <Stack.Item>
-              Rest in a <b>Coffin</b> to claim it, and that area, as your lair.
+              Rest in a <b>Coffin</b> to claim it, and that area, as your haven.
               <br />
               Examine your new structures to see how they function!
               <br />
@@ -139,9 +139,9 @@ const BloodsuckerIntro = () => {
               Masquerade ability will hide your identity to prevent this.
               <br />
               You will learn how to make persuasion racks once you have enough
-              levels to support a vassal, which you will learn during torpor
-              during daytime. Examine the vassal rack to see how many vassals
-              you can have!
+              levels to support a ghoul, which you will learn during torpor
+              during daytime. Examine the ghoul rack to see how many ghouls you
+              can have!
               <br />
               You cannot level up until you select a clan. To select a clan,
               click the clan tab on the top right of this window.

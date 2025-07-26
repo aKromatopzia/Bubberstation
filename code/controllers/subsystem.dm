@@ -13,13 +13,25 @@
 	/// Name of the subsystem - you must change this
 	name = "fire coderbus"
 
-	/// Order of initialization. Higher numbers are initialized first, lower numbers later. Use or create defines such as [INIT_ORDER_DEFAULT] so we can see the order in one file.
-	var/init_order = INIT_ORDER_DEFAULT
+	/// Determines which subsystems this subsystem is dependant on to initialize. Will initialize after all specified subsystems.
+	/// If init_stage is earlier than a dependent subsystem, will throw an error and push the init stage forward to that subsystem.
+	/// Usage: Put the typepaths of the subsystems that need to init before this one in this list.
+	var/list/dependencies = list()
+
+	/// The inverse of the dependencies. Can be set manually, but will also get evaluated at runtime. Turns into a list of instances at runtime.
+	/// Usage: Put the typepaths of the subsystems that need to init after this one in this list.
+	var/list/dependents
+
+	/// ID of the subsystem. Set automatically when the dependency graph is evaluated. Used primarily in determining order.
+	var/ordering_id = 0
+
+	/// Do not modify. Automatically set when the dependency graph is evaluated. Similar to ordering_id, but evaluated after init_stage.
+	var/init_order = 0
 
 	/// Time to wait (in deciseconds) between each call to fire(). Must be a positive integer.
 	var/wait = 20
 
-	/// Priority Weight: When mutiple subsystems need to run in the same tick, higher priority subsystems will be given a higher share of the tick before MC_TICK_CHECK triggers a sleep, higher priority subsystems also run before lower priority subsystems
+	/// Priority Weight: When multiple subsystems need to run in the same tick, higher priority subsystems will be given a higher share of the tick before MC_TICK_CHECK triggers a sleep, higher priority subsystems also run before lower priority subsystems
 	var/priority = FIRE_PRIORITY_DEFAULT
 
 	/// [Subsystem Flags][SS_NO_INIT] to control binary behavior. Flags must be set at compile time or before preinit finishes to take full effect. (You can also restart the mc to force them to process again)
@@ -28,7 +40,7 @@
 	/// Which stage does this subsystem init at. Earlier stages can fire while later stages init.
 	var/init_stage = INITSTAGE_MAIN
 
-	/// This var is set to TRUE after the subsystem has been initialized.
+	/// This var is set to `INITIALIZATION_INNEW_REGULAR` after the subsystem has been initialized.
 	var/initialized = FALSE
 
 	/// Set to 0 to prevent fire() calls, mostly for admin use or subsystems that may be resumed later
@@ -272,7 +284,7 @@
 /datum/controller/subsystem/proc/OnConfigLoad()
 
 /**
- * Used to initialize the subsystem. This is expected to be overriden by subtypes.
+ * Used to initialize the subsystem. This is expected to be overridden by subtypes.
  */
 /datum/controller/subsystem/Initialize()
 	return SS_INIT_NONE

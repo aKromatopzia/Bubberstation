@@ -27,7 +27,7 @@
 	icon_state = "swapper[linked_swapper ? "-linked" : null]"
 	return ..()
 
-/obj/item/swapper/attackby(obj/item/I, mob/user, params)
+/obj/item/swapper/attackby(obj/item/I, mob/user, list/modifiers, list/attack_modifiers)
 	if(istype(I, /obj/item/swapper))
 		var/obj/item/swapper/other_swapper = I
 		if(other_swapper.linked_swapper)
@@ -57,9 +57,9 @@
 	if(QDELETED(linked_swapper))
 		to_chat(user, span_warning("[src] is not linked with another swapper."))
 		return
-	playsound(src, 'sound/weapons/flash.ogg', 25, TRUE)
+	playsound(src, 'sound/items/weapons/flash.ogg', 25, TRUE)
 	to_chat(user, span_notice("You activate [src]."))
-	playsound(linked_swapper, 'sound/weapons/flash.ogg', 25, TRUE)
+	playsound(linked_swapper, 'sound/items/weapons/flash.ogg', 25, TRUE)
 	if(ismob(linked_swapper.loc))
 		var/mob/holder = linked_swapper.loc
 		to_chat(holder, span_notice("[linked_swapper] starts buzzing."))

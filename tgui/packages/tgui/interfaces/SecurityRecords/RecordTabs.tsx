@@ -1,4 +1,5 @@
-import { filter, sortBy } from 'common/collections';
+import { sortBy } from 'es-toolkit';
+import { filter } from 'es-toolkit/compat';
 import { useState } from 'react';
 import { useBackend, useLocalState } from 'tgui/backend';
 import {
@@ -10,17 +11,17 @@ import {
   Section,
   Stack,
   Tabs,
-} from 'tgui/components';
+} from 'tgui-core/components';
 
 import { JOB2ICON } from '../common/JobToIcon';
 import { CRIMESTATUS2COLOR } from './constants';
 import { isRecordMatch } from './helpers';
-import { SecurityRecord, SecurityRecordsData } from './types';
+import type { SecurityRecord, SecurityRecordsData } from './types';
 
 /** Tabs on left, with search bar */
 export const SecurityRecordTabs = (props) => {
   const { act, data } = useBackend<SecurityRecordsData>();
-  const { higher_access, records = [] } = data;
+  const { higher_access, records = [], station_z } = data;
 
   const errorMessage = !records.length
     ? 'No records found.'
@@ -30,7 +31,7 @@ export const SecurityRecordTabs = (props) => {
 
   const sorted = sortBy(
     filter(records, (record) => isRecordMatch(record, search)),
-    (record) => record.name,
+    [(record) => record.name],
   );
 
   return (
@@ -39,7 +40,8 @@ export const SecurityRecordTabs = (props) => {
         <Input
           fluid
           placeholder="Name/Job/Fingerprints"
-          onInput={(event, value) => setSearch(value)}
+          onChange={setSearch}
+          expensive
         />
       </Stack.Item>
       <Stack.Item grow>
@@ -69,7 +71,7 @@ export const SecurityRecordTabs = (props) => {
           <Stack.Item>
             <Button.Confirm
               content="Purge"
-              disabled={!higher_access}
+              disabled={!higher_access || !station_z}
               icon="trash"
               onClick={() => act('purge_records')}
               tooltip="Wipe criminal record data."
@@ -97,6 +99,15 @@ const CrewTab = (props: { record: SecurityRecord }) => {
     if (selectedRecord?.crew_ref === crew_ref) {
       setSelectedRecord(undefined);
     } else {
+      // See MedicalRecords/RecordTabs.tsx for explanation
+      if (selectedRecord === undefined) {
+        setTimeout(() => {
+          act('view_record', {
+            assigned_view: assigned_view,
+            crew_ref: crew_ref,
+          });
+        });
+      }
       setSelectedRecord(record);
       act('view_record', { assigned_view: assigned_view, crew_ref: crew_ref });
     }

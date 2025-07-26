@@ -7,7 +7,7 @@
 	starting_frequency = MODLINK_FREQ_SYNDICATE
 	applied_cell = /obj/item/stock_parts/power_store/cell/hyper
 	applied_modules = list(
-		/obj/item/mod/module/dna_lock/reinforced, // BUBBER EDIT -> REINFORCED
+		/obj/item/mod/module/dna_lock/reinforced,
 		/obj/item/mod/module/emp_shield,
 		/obj/item/mod/module/flashlight,
 		/obj/item/mod/module/magnetic_harness,
@@ -15,7 +15,6 @@
 		/obj/item/mod/module/tether,
 	)
 	default_pins = list(
-		/obj/item/mod/module/armor_booster,
 		/obj/item/mod/module/tether,
 	)
 
@@ -23,14 +22,13 @@
 	applied_cell = /obj/item/stock_parts/power_store/cell/bluespace
 	applied_modules = list(
 		/obj/item/mod/module/baton_holster/preloaded,
-		/obj/item/mod/module/dna_lock/reinforced, // BUBBER EDIT -> REINFORCED
+		/obj/item/mod/module/dna_lock/reinforced,
 		/obj/item/mod/module/emp_shield,
 		/obj/item/mod/module/jetpack,
 		/obj/item/mod/module/magnetic_harness,
 		/obj/item/mod/module/storage/syndicate,
 	)
 	default_pins = list(
-		/obj/item/mod/module/armor_booster,
 		/obj/item/mod/module/jetpack,
 		/obj/item/mod/module/baton_holster,
 	)
@@ -45,7 +43,6 @@
 		/obj/item/mod/module/storage/syndicate,
 	)
 	default_pins = list(
-		/obj/item/mod/module/armor_booster,
 		/obj/item/mod/module/jetpack,
 		/obj/item/mod/module/baton_holster/preloaded,
 		/obj/item/mod/module/scorpion_hook,

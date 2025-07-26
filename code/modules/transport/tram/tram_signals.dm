@@ -118,7 +118,7 @@
 	SStransport.crossing_signals -= src
 	. = ..()
 
-/obj/machinery/transport/crossing_signal/attackby(obj/item/weapon, mob/living/user, params)
+/obj/machinery/transport/crossing_signal/attackby(obj/item/weapon, mob/living/user, list/modifiers, list/attack_modifiers)
 	if(!user.combat_mode)
 		if(default_deconstruction_screwdriver(user, icon_state, icon_state, weapon))
 			return
@@ -180,7 +180,7 @@
 	find_uplink()
 	return CLICK_ACTION_SUCCESS
 
-/obj/machinery/transport/crossing_signal/attackby_secondary(obj/item/weapon, mob/user, params)
+/obj/machinery/transport/crossing_signal/attackby_secondary(obj/item/weapon, mob/user, list/modifiers, list/attack_modifiers)
 	. = ..()
 
 	if(weapon.tool_behaviour == TOOL_WRENCH && panel_open)
@@ -519,7 +519,7 @@
 			. += span_notice("The red [EXAMINE_HINT("local fault")] light is on.")
 			. += span_notice("The status display reads: Repair required.")
 
-/obj/machinery/transport/guideway_sensor/attackby(obj/item/weapon, mob/living/user, params)
+/obj/machinery/transport/guideway_sensor/attackby(obj/item/weapon, mob/living/user, list/modifiers, list/attack_modifiers)
 	if (!user.combat_mode)
 		if(default_deconstruction_screwdriver(user, icon_state, icon_state, weapon))
 			return
@@ -562,7 +562,7 @@
 	new_partner.paired_sensor = WEAKREF(src)
 	new_partner.set_machine_stat(machine_stat & ~MAINT)
 	new_partner.update_appearance()
-	playsound(src, 'sound/machines/synth_yes.ogg', 75, vary = FALSE, use_reverb = TRUE)
+	playsound(src, 'sound/machines/synth/synth_yes.ogg', 75, vary = FALSE, use_reverb = TRUE)
 
 /obj/machinery/transport/guideway_sensor/Destroy()
 	SStransport.sensors -= src
@@ -571,7 +571,7 @@
 		divorcee.set_machine_stat(machine_stat & ~MAINT)
 		divorcee.paired_sensor = null
 		divorcee.update_appearance()
-		playsound(src, 'sound/machines/synth_no.ogg', 75, vary = FALSE, use_reverb = TRUE)
+		playsound(src, 'sound/machines/synth/synth_no.ogg', 75, vary = FALSE, use_reverb = TRUE)
 		paired_sensor = null
 	. = ..()
 

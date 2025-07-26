@@ -80,7 +80,7 @@
 		required_time = get_intern_time_threshold()
 	else if(CONFIG_GET(flag/use_intern_master_job_unlock_threshold) && length(department_head))
 		// Use first department head job as our master job to compare to
-		var/datum/job/master_job = SSjob.GetJob(department_head[1])
+		var/datum/job/master_job = SSjob.get_job(department_head[1])
 		playtime = player_client?.calc_exp_type(master_job.get_exp_req_type())
 		required_time = master_job.get_exp_req_amount()
 	else
@@ -137,4 +137,7 @@
 	internship_use_self_exp_type = TRUE
 
 /datum/job/prisoner
+	can_be_intern = FALSE
+
+/datum/job/assistant
 	can_be_intern = FALSE

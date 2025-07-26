@@ -1,18 +1,3 @@
-#define AMMO_MATS_SHOTGUN list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 4) // not quite as thick as a half-sheet
-
-#define AMMO_MATS_SHOTGUN_FLECH list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 2,\
-									/datum/material/glass = SMALL_MATERIAL_AMOUNT * 2)
-
-#define AMMO_MATS_SHOTGUN_HIVE list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 2,\
-									/datum/material/silver = SMALL_MATERIAL_AMOUNT * 1)
-
-#define AMMO_MATS_SHOTGUN_TIDE list(/datum/material/plasma = SMALL_MATERIAL_AMOUNT * 1,\
-									/datum/material/titanium = SMALL_MATERIAL_AMOUNT * 1)
-
-#define AMMO_MATS_SHOTGUN_PLASMA list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 2,\
-									/datum/material/plasma = SMALL_MATERIAL_AMOUNT * 2)
-
-
 /obj/item/ammo_casing/caflechette
 	name = "flechette steel penetrator"
 	desc = "A Romfed standard rifle flechette."
@@ -37,11 +22,11 @@
 	damage = 15
 	armour_penetration = 60
 	wound_bonus = 10
-	bare_wound_bonus = 10
-	embed_type = /datum/embed_data/caflechette
+	exposed_wound_bonus = 10
+	embed_type = /datum/embedding/caflechette
 	dismemberment = 0
 
-/datum/embed_data/caflechette
+/datum/embedding/caflechette
 	embed_chance = 55
 	pain_chance = 70
 	fall_chance = 30
@@ -61,11 +46,11 @@
 	name = "flechette dart"
 	damage = 10
 	wound_bonus = 25
-	bare_wound_bonus = 35
-	embed_type = /datum/embed_data/ripper
+	exposed_wound_bonus = 35
+	embed_type = /datum/embedding/ripper
 	armour_penetration = 40 //defeat basic armour
 
-/datum/embed_data/ripper
+/datum/embedding/ripper
 	embed_chance = 200
 	pain_chance = 70
 	fall_chance = 1
@@ -85,20 +70,19 @@
 	name = "high velocity steel ball"
 	damage = 10
 	wound_bonus = 20
-	bare_wound_bonus = 10
 	sharpness = SHARP_EDGED
 	wound_bonus = 0
-	bare_wound_bonus = 20
+	exposed_wound_bonus = 20
 	armour_penetration = 10
 	shrapnel_type = /obj/item/shrapnel/stingball
-	embed_type = /datum/embed_data/ballpoint
+	embed_type = /datum/embedding/ballpoint
 	stamina = 20
 	ricochet_chance = 50
 	ricochets_max = 3
 	ricochet_auto_aim_angle = 90
 	ricochet_auto_aim_range = 5
 
-/datum/embed_data/ballpoint
+/datum/embedding/ballpoint
 	embed_chance = 50
 	fall_chance = 5
 	jostle_chance = 5
@@ -117,11 +101,11 @@
 	name = "high velocity magnesium rod"
 	damage = 5
 	wound_bonus = 15
-	bare_wound_bonus = 5
-	embed_type = /datum/embed_data/magnesium
+	exposed_wound_bonus = 5
+	embed_type = /datum/embedding/magnesium
 	armour_penetration = 100 //does really low damage
 
-/datum/embed_data/magnesium
+/datum/embedding/magnesium
 	embed_chance = 80
 	pain_chance = 10
 	fall_chance = 10
@@ -137,13 +121,3 @@
 		var/mob/living/carbon/M = target
 		M.adjust_fire_stacks(12)
 		M.ignite_mob()
-
-#undef AMMO_MATS_SHOTGUN
-
-#undef AMMO_MATS_SHOTGUN_FLECH
-
-#undef AMMO_MATS_SHOTGUN_HIVE
-
-#undef AMMO_MATS_SHOTGUN_TIDE
-
-#undef AMMO_MATS_SHOTGUN_PLASMA

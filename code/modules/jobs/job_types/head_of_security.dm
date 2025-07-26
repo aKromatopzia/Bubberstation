@@ -35,7 +35,9 @@
 
 	family_heirlooms = list(/obj/item/book/manual/wiki/security_space_law)
 	rpg_title = "Guard Leader"
-	job_flags = STATION_JOB_FLAGS | HEAD_OF_STAFF_JOB_FLAGS
+	job_flags = STATION_JOB_FLAGS | HEAD_OF_STAFF_JOB_FLAGS | JOB_ANTAG_PROTECTED
+
+	human_authority = JOB_AUTHORITY_HUMANS_ONLY
 
 	voice_of_god_power = 1.4 //Command staff has authority
 
@@ -55,7 +57,7 @@
 	suit_store = /obj/item/gun/energy/e_gun //BUBBER EDIT - REVERTS SKYRAT REMOVAL
 	backpack_contents = list(
 		/obj/item/evidencebag = 1,
-		/obj/item/choice_beacon/security_pistol = 1, //Skyrat Addition
+		/obj/item/melee/baton/security/loaded/hos = 1,
 		)
 	belt = /obj/item/modular_computer/pda/heads/hos
 	ears = /obj/item/radio/headset/heads/hos/alt

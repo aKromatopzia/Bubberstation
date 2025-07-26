@@ -11,9 +11,9 @@
 		TRAIT_MUTANT_COLORS,
 	)
 	inherent_biotypes = MOB_ORGANIC|MOB_HUMANOID
-	mutanttongue = /obj/item/organ/internal/tongue/vox
-	mutantlungs = /obj/item/organ/internal/lungs/nitrogen/vox
-	mutantbrain = /obj/item/organ/internal/brain/vox
+	mutanttongue = /obj/item/organ/tongue/vox
+	mutantlungs = /obj/item/organ/lungs/nitrogen/vox
+	mutantbrain = /obj/item/organ/brain/cybernetic/cortical/vox
 	breathid = "n2"
 	mutant_bodyparts = list()
 	payday_modifier = 1.0
@@ -23,7 +23,7 @@
 	// Vox are cold resistant, but also heat sensitive
 	bodytemp_heat_damage_limit = (BODYTEMP_HEAT_DAMAGE_LIMIT - 15) // being cold resistant, should make you heat sensitive actual effect ingame isn't much
 	bodytemp_cold_damage_limit = (BODYTEMP_COLD_DAMAGE_LIMIT - 30)
-	digitigrade_customization = DIGITIGRADE_OPTIONAL
+	digitigrade_customization = DIGITIGRADE_FORCED
 	bodypart_overrides = list(
 		BODY_ZONE_HEAD = /obj/item/bodypart/head/mutant/vox,
 		BODY_ZONE_CHEST = /obj/item/bodypart/chest/mutant/vox,

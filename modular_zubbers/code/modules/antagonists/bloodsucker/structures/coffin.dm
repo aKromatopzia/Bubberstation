@@ -14,11 +14,11 @@
 /datum/antagonist/bloodsucker/proc/claim_coffin(obj/structure/closet/crate/claimed, area/current_area)
 	if(!can_claim_coffin(claimed, current_area))
 		return FALSE
-	// This is my Lair
+	// This is my Haven
 	coffin = claimed
-	bloodsucker_lair_area = current_area
-	to_chat(owner, span_userdanger("You have claimed the [claimed] as your place of immortal rest! Your lair is now [bloodsucker_lair_area]."))
-	to_chat(owner, span_announce("Bloodsucker Tip: Find new lair recipes in the Structures tab of the <i>Crafting Menu</i>, including the <i>Persuasion Rack</i> for converting crew into Vassals."))
+	bloodsucker_haven_area = current_area
+	to_chat(owner, span_userdanger("You have claimed the [claimed] as your place of immortal rest! Your haven is now [bloodsucker_haven_area]."))
+	to_chat(owner, span_announce("Bloodsucker Tip: Find new haven recipes in the Structures tab of the <i>Crafting Menu</i>, including the <i>Persuasion Rack</i> for converting crew into Ghouls."))
 	return TRUE
 
 /// From crate.dm
@@ -138,6 +138,8 @@
 	if(bloodsuckerdatum.claim_coffin(src, current_area))
 		resident = claimant
 		anchored = TRUE
+		if(!(interaction_flags_click & ALLOW_RESTING))
+			interaction_flags_click = interaction_flags_click | ALLOW_RESTING
 		START_PROCESSING(SSprocessing, src)
 		return TRUE
 	return FALSE
@@ -180,7 +182,7 @@
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = IS_BLOODSUCKER(resident)
 	if(bloodsuckerdatum && bloodsuckerdatum.coffin == src)
 		bloodsuckerdatum.coffin = null
-		bloodsuckerdatum.bloodsucker_lair_area = null
+		bloodsuckerdatum.bloodsucker_haven_area = null
 	for(var/obj/structure/bloodsucker/bloodsucker_structure in get_area(src))
 		if(bloodsucker_structure.owner == resident)
 			bloodsucker_structure.unbolt()
@@ -188,9 +190,11 @@
 		if(manual)
 			to_chat(resident, span_cult_italic("You have unclaimed your coffin! This also unclaims all your other Bloodsucker structures!"))
 		else
-			to_chat(resident, span_cult_italic("You sense that the link with your coffin and your sacred lair has been broken! You will need to seek another."))
+			to_chat(resident, span_cult_italic("You sense that the link with your coffin and your sacred haven has been broken! You will need to seek another."))
 	// Remove resident. Because this object isnt removed from the game immediately (GC?) we need to give them a way to see they don't have a home anymore.
 	resident = null
+	if(interaction_flags_click & ALLOW_RESTING)
+		interaction_flags_click = interaction_flags_click & ~ALLOW_RESTING
 
 /// You cannot lock in/out a coffin's owner. SORRY.
 /obj/structure/closet/crate/coffin/can_open(mob/living/user)
@@ -202,7 +206,7 @@
 			update_icon()
 		locked = FALSE
 		return TRUE
-	playsound(get_turf(src), 'sound/machines/door_locked.ogg', 20, 1)
+	playsound(get_turf(src), 'modular_zubbers/sound/machines/coffin_locked.ogg', 20, 1)
 	to_chat(user, span_notice("[src] appears to be locked tight from the inside."))
 
 /obj/structure/closet/crate/coffin/close(mob/living/user)
@@ -233,7 +237,7 @@
 
 /obj/structure/closet/crate/coffin/proc/prompt_coffin_claim(datum/antagonist/bloodsucker/dracula)
 	var/area/current_area = get_area(src)
-	switch(tgui_alert(dracula.owner.current, "Do you wish to claim this as your coffin? [current_area] will be your lair.", "Claim Lair", list("Yes", "No")))
+	switch(tgui_alert(dracula.owner.current, "Do you wish to claim this as your coffin? [current_area] will be your haven.", "Claim Haven", list("Yes", "No")))
 		if("Yes")
 			return claim_coffin(dracula.owner.current, current_area)
 	return FALSE
@@ -304,7 +308,7 @@
 	. = ..()
 	if(user in src)
 		LockMe(user, !locked)
-		return
+		return CLICK_ACTION_SUCCESS
 
 	if(user == resident && user.Adjacent(src))
 		balloon_alert(user, "unclaim coffin?")
@@ -315,6 +319,7 @@
 		switch(unclaim_response)
 			if("Yes")
 				unclaim_coffin(TRUE)
+	return CLICK_ACTION_SUCCESS
 
 /obj/structure/closet/crate/proc/LockMe(mob/user, inLocked = TRUE)
 	if(user == resident)

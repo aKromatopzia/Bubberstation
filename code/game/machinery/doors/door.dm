@@ -29,11 +29,15 @@
 	var/visible = TRUE
 	var/operating = FALSE
 	var/glass = FALSE
+	/// If something isn't a glass door but doesn't have a fill_closed icon (no glass slots), this prevents it from being used
+	var/can_be_glass = TRUE
 	/// Do we need to keep track of a filler panel with the airlock
 	var/multi_tile
 	/// A filler object used to fill the space of multi-tile airlocks
 	var/obj/structure/fluff/airlock_filler/filler
 	var/welded = FALSE
+	///Whether this door has a panel or not; FALSE also stops the examine blurb about the panel from showing up
+	var/has_access_panel = TRUE
 	/// For rglass-windowed airlocks and firedoors
 	var/heat_proof = FALSE
 	/// Emergency access override
@@ -78,6 +82,14 @@
 	fire = 80
 	acid = 70
 
+/obj/machinery/door/on_object_saved()
+	var/data
+
+	if(welded)
+		data += "[data ? ",\n" : ""][/obj/effect/mapping_helpers/airlock/welded]"
+
+	return data
+
 /obj/machinery/door/Initialize(mapload)
 	AddElement(/datum/element/blocks_explosives)
 	. = ..()
@@ -114,6 +126,7 @@
 	)
 	AddElement(/datum/element/connect_loc, loc_connections)
 	AddElement(/datum/element/can_barricade)
+	update_appearance()
 
 /obj/machinery/door/examine(mob/user)
 	. = ..()
@@ -122,7 +135,8 @@
 			. += span_notice("Due to a security threat, its access requirements have been lifted!")
 		else
 			. += span_notice("In the event of a red alert, its access requirements will automatically lift.")
-	. += span_notice("Its maintenance panel is [panel_open ? "open" : "<b>screwed</b> in place"].")
+	if(has_access_panel)
+		. += span_notice("Its maintenance panel is [panel_open ? "open" : "<b>screwed</b> in place"].")
 
 /obj/machinery/door/add_context(atom/source, list/context, obj/item/held_item, mob/user)
 	. = ..()
@@ -210,7 +224,7 @@
 	if(!red_alert_access)
 		return
 	audible_message(span_notice("[src] whirr[p_s()] as [p_they()] automatically lift[p_s()] access requirements!"))
-	playsound(src, 'sound/machines/boltsup.ogg', 50, TRUE)
+	playsound(src, 'sound/machines/airlock/boltsup.ogg', 50, TRUE)
 
 /obj/machinery/door/proc/try_safety_unlock(mob/user)
 	return FALSE
@@ -292,6 +306,12 @@
 	. = ..()
 	if(.)
 		return
+	// Stops people without +USE from being able to click-open airlocks
+	// Explicitly not a generic check - if you make this generic, AIs (and more) won't be able to open doors
+	if(isliving(user))
+		var/mob/living/living_user = user
+		if(!(living_user.mobility_flags & MOBILITY_USE))
+			return
 	if(try_remove_seal(user))
 		return
 	if(try_safety_unlock(user))
@@ -303,7 +323,7 @@
 		return
 	return ..()
 
-/obj/machinery/door/proc/try_to_activate_door(mob/user, access_bypass = FALSE)
+/obj/machinery/door/proc/try_to_activate_door(mob/living/user, access_bypass = FALSE)
 	add_fingerprint(user)
 	if(operating || (obj_flags & EMAGGED) || !can_open_with_hands)
 		return
@@ -334,7 +354,7 @@
 	return
 
 
-/obj/machinery/door/proc/try_to_crowbar(obj/item/acting_object, mob/user)
+/obj/machinery/door/proc/try_to_crowbar(obj/item/acting_object, mob/user, forced = FALSE)
 	return
 
 /// Called when the user right-clicks on the door with a crowbar.
@@ -356,7 +376,7 @@
 	try_to_crowbar(tool, user, forced_open)
 	return ITEM_INTERACT_SUCCESS
 
-/obj/machinery/door/attackby(obj/item/weapon, mob/living/user, params)
+/obj/machinery/door/attackby(obj/item/weapon, mob/living/user, list/modifiers, list/attack_modifiers)
 	if(istype(weapon, /obj/item/access_key))
 		var/obj/item/access_key/key = weapon
 		return key.attempt_open_door(user, src)
@@ -399,7 +419,7 @@
 	switch(damage_type)
 		if(BRUTE)
 			if(glass)
-				playsound(loc, 'sound/effects/glasshit.ogg', 90, TRUE)
+				playsound(loc, 'sound/effects/glass/glasshit.ogg', 90, TRUE)
 			else if(damage_amount)
 				//SKYRAT EDIT ADDITION - CREDITS TO WHITEDREAM(valtos)
 				playsound(src, pick('modular_skyrat/master_files/sound/effects/metalblock1.wav', 'modular_skyrat/master_files/sound/effects/metalblock2.wav', \
@@ -408,9 +428,9 @@
 									'modular_skyrat/master_files/sound/effects/metalblock7.wav', 'modular_skyrat/master_files/sound/effects/metalblock8.wav'), 50, TRUE)
 				//SKYRAT EDIT END
 			else
-				playsound(src, 'sound/weapons/tap.ogg', 50, TRUE)
+				playsound(src, 'sound/items/weapons/tap.ogg', 50, TRUE)
 		if(BURN)
-			playsound(src.loc, 'sound/items/welder.ogg', 100, TRUE)
+			playsound(src.loc, 'sound/items/tools/welder.ogg', 100, TRUE)
 
 /obj/machinery/door/emp_act(severity)
 	. = ..()
@@ -424,17 +444,17 @@
 	switch(animation)
 		if(DOOR_OPENING_ANIMATION)
 			if(panel_open)
-				icon_state = "o_door_opening"
+				icon_state = "o_[base_icon_state]_opening"
 			else
-				icon_state = "door_opening"
+				icon_state = "[base_icon_state]_opening"
 		if(DOOR_CLOSING_ANIMATION)
 			if(panel_open)
-				icon_state = "o_door_closing"
+				icon_state = "o_[base_icon_state]_closing"
 			else
-				icon_state = "door_closing"
+				icon_state = "[base_icon_state]_closing"
 		if(DOOR_DENY_ANIMATION)
 			if(!machine_stat)
-				icon_state = "door_deny"
+				icon_state = "[base_icon_state]_deny"
 		else
 			icon_state = "[base_icon_state]_[density ? "closed" : "open"]"
 
@@ -468,15 +488,15 @@
 			return 0.6 SECONDS
 
 /// Override this to do misc tasks on animation start
-/obj/machinery/door/proc/animation_effects(animation)
+/obj/machinery/door/proc/animation_effects(animation, force_type = DEFAULT_DOOR_CHECKS)
 	return
 
 /// Used to start a new animation
 /// Accepts the animation to start as an arg
-/obj/machinery/door/proc/run_animation(animation)
+/obj/machinery/door/proc/run_animation(animation, force_type = DEFAULT_DOOR_CHECKS)
 	set_animation(animation)
 	addtimer(CALLBACK(src, PROC_REF(set_animation), null), animation_length(animation), TIMER_UNIQUE|TIMER_OVERRIDE)
-	animation_effects(animation)
+	animation_effects(animation, force_type)
 
 // React to our animation changing
 /obj/machinery/door/proc/set_animation(animation)

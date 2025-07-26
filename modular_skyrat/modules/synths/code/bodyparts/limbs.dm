@@ -112,7 +112,8 @@
 	bodypart_flags = BODYPART_UNHUSKABLE
 
 	wing_types = list(
-		/obj/item/organ/external/wings/functional/robotic,
+		/obj/item/organ/wings/functional/robotic,
+		/obj/item/organ/wings/functional/robotic/virtual
 	)
 
 /datum/design/synth_chest

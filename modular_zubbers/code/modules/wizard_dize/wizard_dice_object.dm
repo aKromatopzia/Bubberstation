@@ -96,7 +96,7 @@
 	src.forceMove(desired_turf)
 
 	new/obj/effect/temp_visual/emp/pulse(desired_turf) //Does not cause an EMP :^)
-	playsound(desired_turf,'sound/magic/magic_missile.ogg',50,8,FALSE)
+	playsound(desired_turf,'sound/effects/magic/magic_missile.ogg',50,8,FALSE)
 
 	notify_ghosts(
 		"[src] has teleported to [desired_turf.loc]!",
@@ -113,7 +113,7 @@
 	var/turf/current_turf = get_turf(src)
 
 	new/obj/effect/temp_visual/emp/pulse(current_turf) //Does not cause an EMP :^)
-	playsound(current_turf,'sound/magic/magic_missile.ogg',50,8,FALSE)
+	playsound(current_turf,'sound/effects/magic/magic_missile.ogg',50,8,FALSE)
 
 	if(roll != 20)
 		if(roll == 1) //lol. lmao
@@ -132,7 +132,7 @@
 	qdel(src)
 
 
-/obj/item/dice/d20/teleporting_die_of_fate/proc/apply_random_smite(var/mob/living/carbon/human/target)
+/obj/item/dice/d20/teleporting_die_of_fate/proc/apply_random_smite(mob/living/carbon/human/target)
 
 	switch(smite_rng_seed % 9)
 		if(0)
@@ -157,7 +157,7 @@
 			var/turf/lightning_source = get_turf(src)
 			lightning_source.Beam(target, icon_state="lightning[rand(1,12)]", time = 5)
 			target.adjustFireLoss(LIGHTNING_BOLT_DAMAGE)
-			playsound(get_turf(target), 'sound/magic/lightningbolt.ogg', 50, TRUE)
+			playsound(get_turf(target), 'sound/effects/magic/lightningbolt.ogg', 50, TRUE)
 			target.electrocution_animation(LIGHTNING_BOLT_ELECTROCUTION_ANIMATION_LENGTH)
 			to_chat(target, span_warning("LIGHTNING BOLT!!"))
 		if(5)
@@ -187,8 +187,8 @@
 			to_chat(target, span_warning("SPECIAL DELIVERY!"))
 		if(8)
 			//You turn into a lizard. If you're already a lizard, you're now scared of lizards.
-			if(target.dna && !istype(target.dna.species,/datum/species/lizard/))
-				target.set_species(/datum/species/lizard/, TRUE, FALSE, null, null, null, null, TRUE, TRUE)
+			if(target.dna && !istype(target.dna.species,/datum/species/lizard))
+				target.set_species(/datum/species/lizard)
 				to_chat(target, span_warning("You're a lizard, Harry."))
 			else
 				target.gain_trauma(/datum/brain_trauma/mild/phobia/lizards, TRAUMA_RESILIENCE_SURGERY)

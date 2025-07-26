@@ -167,7 +167,7 @@
 	RETURN_TYPE(/datum/wound/burn/robotic/overheat)
 	for (var/datum/wound/found_wound as anything in limb.wounds)
 		var/datum/wound_pregen_data/pregen_data = found_wound.get_pregen_data()
-		if (pregen_data.wound_series == WOUND_SERIES_METAL_BURN_OVERHEAT && found_wound.severity >= WOUND_SEVERITY_SEVERE) // meh solution but whateva
+		if (pregen_data.wound_series == WOUND_SERIES_METAL_BURN_OVERHEAT && found_wound.severity >= WOUND_SEVERITY_MODERATE) // meh solution but whateva
 			return found_wound
 	return null
 
@@ -182,7 +182,7 @@
 #define PERCUSSIVE_MAINTENANCE_ATTACKER_NOT_VICTIM_CHANCE_MULT 2.5
 
 /// Signal handler proc to when our victim has damage applied via apply_damage(), which is a external attack.
-/datum/wound/blunt/robotic/proc/victim_attacked(datum/source, damage, damagetype, def_zone, blocked, wound_bonus, bare_wound_bonus, sharpness, attack_direction, attacking_item)
+/datum/wound/blunt/robotic/proc/victim_attacked(datum/source, damage, damagetype, def_zone, blocked, wound_bonus, exposed_wound_bonus, sharpness, attack_direction, attacking_item)
 	SIGNAL_HANDLER
 
 	if (def_zone != limb.body_zone) // use this proc since receive damage can also be called for like, chems and shit

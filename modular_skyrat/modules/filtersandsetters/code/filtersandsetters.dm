@@ -8,7 +8,7 @@
 	toolspeed = 0.25
 
 /obj/item/bonesetter/alien/get_all_tool_behaviours()
-    return list(TOOL_BONESET, TOOL_ALIEN_BONESET)
+	return list(TOOL_BONESET, TOOL_ALIEN_BONESET)
 
 /datum/wound/item_can_treat(obj/item/potential_treater, mob/user)
 	. = ..()
@@ -21,6 +21,9 @@
 	treatable_tools = list(TOOL_ALIEN_BONESET)
 
 /datum/wound/blunt/bone/severe/treat(obj/item/I, mob/user)
+	if(!(TOOL_ALIEN_BONESET in I.get_all_tool_behaviours()))
+		return ..()
+
 	var/scanned = HAS_TRAIT(src, TRAIT_WOUND_SCANNED)
 	var/self_penalty_mult = user == victim ? 1.5 : 1
 	var/scanned_mult = scanned ? 0.5 : 1
@@ -50,6 +53,9 @@
 	treatable_tools = list(TOOL_ALIEN_BONESET)
 
 /datum/wound/blunt/bone/critical/treat(obj/item/I, mob/user)
+	if(!(TOOL_ALIEN_BONESET in I.get_all_tool_behaviours()))
+		return ..()
+
 	var/scanned = HAS_TRAIT(src, TRAIT_WOUND_SCANNED)
 	var/self_penalty_mult = user == victim ? 1.5 : 1
 	var/scanned_mult = scanned ? 0.5 : 1
@@ -118,6 +124,9 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	toolspeed = 0.7
 
+/obj/item/blood_filter/advanced/attack_self_secondary(mob/user)
+	ui_interact(user)
+
 /obj/item/blood_filter/advanced/get_all_tool_behaviours()
 	return list(TOOL_BLOODFILTER, TOOL_BONESET)
 
@@ -143,7 +152,7 @@
 
 	tool_behaviour = (active ? TOOL_BONESET : TOOL_BLOODFILTER)
 	balloon_alert(user, "tools set to [active ? "set bones" : "filter blood"]")
-	playsound(user ? user : src, 'sound/items/change_drill.ogg', 50, TRUE)
+	playsound(user ? user : src, 'sound/items/tools/change_drill.ogg', 50, TRUE)
 	return COMPONENT_NO_DEFAULT_MESSAGE
 
 /obj/item/blood_filter/advanced/examine()
@@ -175,3 +184,4 @@
 	)
 	return ..()
 
+#undef TOOL_ALIEN_BONESET

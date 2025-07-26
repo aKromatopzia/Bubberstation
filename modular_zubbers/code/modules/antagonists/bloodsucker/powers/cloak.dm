@@ -1,4 +1,3 @@
-
 #define USE_SEEN_CLOAK_LEVEL 2
 #define USE_RUN_CLOAK_LEVEL 4
 
@@ -15,7 +14,7 @@
 		At level 4, you will be able to run while cloaked."
 	power_flags = BP_CONTINUOUS_EFFECT
 	check_flags = AB_CHECK_CONSCIOUS
-	purchase_flags = BLOODSUCKER_CAN_BUY|VASSAL_CAN_BUY
+	purchase_flags = BLOODSUCKER_CAN_BUY|GHOUL_CAN_BUY
 	bloodcost = 5
 	constant_bloodcost = 0.2
 	cooldown_time = 5 SECONDS
@@ -32,7 +31,7 @@
 				continue
 			if(!can_see(watcher, owner))
 				continue
-			if(IS_BLOODSUCKER(watcher) || IS_VASSAL(watcher))
+			if(IS_BLOODSUCKER(watcher) || IS_GHOUL(watcher))
 				continue
 			owner.balloon_alert(owner, "you can only vanish unseen.")
 			return FALSE
@@ -82,3 +81,6 @@
 	if(level_current < USE_RUN_CLOAK_LEVEL && was_running && user.move_intent == MOVE_INTENT_WALK)
 		user.toggle_move_intent()
 	user.balloon_alert(user, "cloak turned off.")
+
+#undef USE_SEEN_CLOAK_LEVEL
+#undef USE_RUN_CLOAK_LEVEL

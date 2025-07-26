@@ -113,7 +113,7 @@
 	base_icon_state = "meridine"
 	icon_state = "meridine"
 	list_reagents = list(
-		/datum/reagent/medicine/ammoniated_mercury = 10,
+		/datum/reagent/medicine/ammoniated_mercury = 9,
 		/datum/reagent/medicine/potass_iodide = 10,
 		/datum/reagent/nitrous_oxide = 5,
 	)
@@ -159,7 +159,7 @@
 // Stimulant centered around ondansetron
 /obj/item/reagent_containers/hypospray/medipen/deforest/krotozine
 	name = "krotozine manipulative stimulant injector"
-	desc = "A Deforest branded autoinjector, loaded with a mix of stimulants of weak healing agents."
+	desc = "A Deforest branded autoinjector, loaded with a mix of stimulants and weak healing agents."
 	base_icon_state = "krotozine"
 	icon_state = "krotozine"
 	list_reagents = list(

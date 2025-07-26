@@ -63,7 +63,7 @@
 	icon_state = "maintcentral"
 
 /area/station/terminal/maintenance/fore
-	name = "\improper Arrivals Terminal Fore Maintenance"
+	name = "\improper Arrivals Terminal Disposals"
 	icon_state = "maintfore"
 
 /area/station/terminal/maintenance/aft
@@ -71,14 +71,9 @@
 	icon_state = "maintaft"
 
 /area/station/terminal/tramline
-	name = "Tramline"
+	name = "\improper Tramline"
 	icon_state = "shuttle"
 	requires_power = FALSE //Imagine if your funny gimmick had no power and people had to walk lmao
-
-
-
-
-
 
 /area/station/engineering/storage/eva
 	name = "\improper Engineering EVA Storage"
@@ -88,15 +83,15 @@
 	name = "DO NOT USE"
 	icon = 'icons/area/areas_station.dmi'
 	icon_state = "mining"
-	has_gravity = STANDARD_GRAVITY
+	default_gravity = STANDARD_GRAVITY
 	flags_1 = NONE
 	area_flags = UNIQUE_AREA | FLORA_ALLOWED
 	ambience_index = AMBIENCE_ICEMOON
 	sound_environment = SOUND_AREA_ICEMOON
-	ambient_buzz = 'sound/ambience/magma.ogg'
+	ambient_buzz = 'sound/ambience/lavaland/magma.ogg'
 
 /area/moonstation/surface
-	name = "Lunar Surface"
+	name = "\improper Lunar Surface"
 	icon_state = "explored"
 	outdoors = TRUE
 	always_unpowered = TRUE
@@ -132,7 +127,7 @@
 	map_generator = /datum/map_generator/cave_generator/moonstation
 
 /area/moonstation/underground
-	name = "Lunar Caves"
+	name = "\improper Lunar Caves"
 	outdoors = TRUE
 	always_unpowered = TRUE
 	requires_power = TRUE
@@ -165,3 +160,10 @@
 /area/lavaland/underground/unexplored/danger
 	icon_state = "danger"
 	area_flags = VALID_TERRITORY | UNIQUE_AREA | CAVES_ALLOWED | FLORA_ALLOWED | MOB_SPAWN_ALLOWED | MEGAFAUNA_SPAWN_ALLOWED
+
+/area/station/maintenance/department/medical/psychology
+	name = "\improper Psychology Maintenance"
+	icon_state = "unknown"
+
+/area/station/maintenance/department/engine/lower
+	name = "\improper Lower Engineering Maintenance"

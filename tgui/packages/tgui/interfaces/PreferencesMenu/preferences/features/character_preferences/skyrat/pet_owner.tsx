@@ -1,9 +1,13 @@
 // THIS IS A SKYRAT UI FILE
-import { Feature, FeatureChoiced, FeatureShortTextInput } from '../../base';
+import {
+  type Feature,
+  type FeatureChoiced,
+  FeatureShortTextInput,
+} from '../../base';
 import { FeatureDropdownInput } from '../../dropdowns';
 
 export const pet_owner: FeatureChoiced = {
-  name: 'Pet Owner',
+  name: 'Pet Type',
   component: FeatureDropdownInput,
 };
 

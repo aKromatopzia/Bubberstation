@@ -52,18 +52,6 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
-/datum/design/sol40_mag_drum_rifle
-	name = "Sol .40 Rifle Drum Magazine"
-	desc = "A large drum Sol .40 Rifle magazine for compatible Weaponry."
-	id = "sol40_rifldrummag"
-	build_type = PROTOLATHE | AWAY_LATHE
-	materials = list(/datum/material/plastic = SHEET_MATERIAL_AMOUNT * 40)
-	build_path = /obj/item/ammo_box/magazine/c40sol_rifle/drum/starts_empty
-	category = list(
-		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
-	)
-	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
-
 //Grenade Launcher stuff
 
 /datum/design/kiboko_mag
@@ -104,8 +92,8 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design/s12c_antitide
-	name = "12 Gauge Advanced Anti Riot Ammunition Box(Non-Lethal)"
-	desc = "A 12 gauge ammunition box for shotgun shells. These are less lethal and will embed into target"
+	name = "12 Gauge Advanced Anti Riot Cartridge(Less-Lethal)"
+	desc = "A 12 gauge cartridge filled with nanite electrodes, these are less lethal and will embed into a target."
 	id = "s12c_antitide"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/silver = SHEET_MATERIAL_AMOUNT * 2, /datum/material/gold = SHEET_MATERIAL_AMOUNT * 1)
@@ -156,7 +144,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design/advancedgaugeboxes_antitide
-	name = "12 Gauge Advanced Anti Riot Ammunition Box(Non-Lethal)"
+	name = "12 Gauge Advanced Anti Riot Ammunition Box(Less-Lethal)"
 	desc = "A 12 gauge ammunition box for shotgun shells."
 	id = "s12g_antitide"
 	build_type = PROTOLATHE | AWAY_LATHE
@@ -216,7 +204,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design/advancedgaugeboxes_beanbagslug
-	name = "12 Gauge Advanced Bean Bag Ammunition Box(Non-Lethal)"
+	name = "12 Gauge Advanced Bean Bag Ammunition Box(Less-Lethal)"
 	desc = "A 12 gauge ammunition box for shotgun shells."
 	id = "s12g_bslug"
 	build_type = PROTOLATHE | AWAY_LATHE
@@ -427,7 +415,7 @@
 	id = "c10mm_rihdf"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5, /datum/material/plastic = SHEET_MATERIAL_AMOUNT * 15)
-	build_path = /obj/item/ammo_box/c10mm/speedloader
+	build_path = /obj/item/ammo_box/c10mm/speedloader/ihdf
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
 	)
@@ -469,55 +457,6 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
-//IDMA Gun Stuff
-/datum/design/caflechette
-	name = "Flechette Rifle Magazine (lethal)"
-	desc = "A magazine for the CMG-1."
-	id = "ca_flech"
-	build_type = PROTOLATHE | AWAY_LATHE
-	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 15, /datum/material/titanium = SHEET_MATERIAL_AMOUNT * 15, /datum/material/plastic = SHEET_MATERIAL_AMOUNT * 15)
-	build_path = /obj/item/ammo_box/magazine/caflechette
-	category = list(
-		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
-	)
-	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
-
-/datum/design/caflechette_ripper
-	name = "Flechette Ripper Rifle Magazine (lethal/wounding)"
-	desc = "A magazine for the CMG-1. Very likely to embed and cause further damage"
-	id = "ca_flechripper"
-	build_type = PROTOLATHE | AWAY_LATHE
-	materials = list(/datum/material/silver = SHEET_MATERIAL_AMOUNT * 15, /datum/material/titanium = SHEET_MATERIAL_AMOUNT * 15, /datum/material/plastic = SHEET_MATERIAL_AMOUNT * 15)
-	build_path = /obj/item/ammo_box/magazine/caflechette/ripper
-	category = list(
-		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
-	)
-	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
-
-/datum/design/caflechette_magnesium
-	name = "Flechette Magnesium Rod Rifle Magazine (Very Lethal)"
-	desc = "A magazine for the CMG-1. Burns up on impact with target"
-	id = "ca_flechmagnesium"
-	build_type = PROTOLATHE | AWAY_LATHE
-	materials = list(/datum/material/plasma = SHEET_MATERIAL_AMOUNT * 15, /datum/material/titanium = SHEET_MATERIAL_AMOUNT * 15, /datum/material/plastic = SHEET_MATERIAL_AMOUNT * 15)
-	build_path = /obj/item/ammo_box/magazine/caflechette/magnesium
-	category = list(
-		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
-	)
-	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
-
-/datum/design/caflechette_ballpoint
-	name = "Flechette Ball Point Rifle Magazine (Less Lethal)"
-	desc = "A magazine for the CMG-1. Great at dispersing kinetic energy on impact with target"
-	id = "ca_flechballpoint"
-	build_type = PROTOLATHE | AWAY_LATHE
-	materials = list(/datum/material/titanium = SHEET_MATERIAL_AMOUNT * 15, /datum/material/plastic = SHEET_MATERIAL_AMOUNT * 15)
-	build_path = /obj/item/ammo_box/magazine/caflechette/ballpoint
-	category = list(
-		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
-	)
-	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
-
 //Conversion Kit
 
 /datum/design/sol_rifle_carbine_kit
@@ -527,19 +466,6 @@
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5, /datum/material/glass =SHEET_MATERIAL_AMOUNT, /datum/material/plastic =SHEET_MATERIAL_AMOUNT * 3.5, /datum/material/titanium =HALF_SHEET_MATERIAL_AMOUNT)
 	build_path = /obj/item/weaponcrafting/gunkit/sol_rifle_carbine_kit
-	category = list(
-		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_KITS
-	)
-	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
-	autolathe_exportable = FALSE
-
-/datum/design/sol_smg_rapidfire_kit //this is currently un-balanced, please fix it when convenient
-	name = "Romulus SMG Twin-Burst Conversion Kit(Very Lethal)"
-	desc = "The kit to brutalise your functional submachine gun into a monstrosity that fires in two round-burst at a faster rate."
-	id = "sol_smg_rapidfire_kit"
-	build_type = PROTOLATHE | AWAY_LATHE
-	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5, /datum/material/glass =SHEET_MATERIAL_AMOUNT, /datum/material/plastic =SHEET_MATERIAL_AMOUNT * 3.5, /datum/material/titanium =HALF_SHEET_MATERIAL_AMOUNT)
-	build_path = /obj/item/weaponcrafting/gunkit/sol_smg_rapidfire_kit
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_KITS
 	)

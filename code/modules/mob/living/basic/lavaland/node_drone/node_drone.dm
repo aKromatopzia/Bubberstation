@@ -126,7 +126,7 @@
 	animate(src, pixel_z = 400, time = 2 SECONDS, easing = QUAD_EASING|EASE_IN, flags = ANIMATION_PARALLEL)
 	sleep(2 SECONDS)
 	if(funny_ending)
-		playsound(src, 'sound/effects/explosion3.ogg', 50, FALSE) //node drone died on the way back to his home planet.
+		playsound(src, 'sound/effects/explosion/explosion3.ogg', 50, FALSE) //node drone died on the way back to his home planet.
 		visible_message(span_notice("...or maybe not."))
 	qdel(src)
 
@@ -151,7 +151,7 @@
 		BB_TARGETING_STRATEGY = /datum/targeting_strategy/basic, // Use this to find vents to run away from
 	)
 
-	ai_traits = STOP_MOVING_WHEN_PULLED
+	ai_traits = PASSIVE_AI_FLAGS
 	ai_movement = /datum/ai_movement/basic_avoidance
 	idle_behavior = null
 	planning_subtrees = list(

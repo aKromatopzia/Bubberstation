@@ -1151,39 +1151,39 @@
 
 //GRAYSCALE MAID COSTUME
 
-/datum/greyscale_config/maid_neck_cover
+/datum/greyscale_config/bubber_maid_neck_cover
 	name = "Maid Neck Cover"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/maid_costume.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/costumes/maid_neck_cover.json'
 
-/datum/greyscale_config/maid_neck_cover/worn
+/datum/greyscale_config/bubber_maid_neck_cover/worn
 	name = "Maid Neck Cover (Worn)"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/maid_costume_worn.dmi'
 
-/datum/greyscale_config/maid_arm_covers
+/datum/greyscale_config/bubber_maid_arm_covers
 	name = "Maid Arm Covers"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/maid_costume.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/costumes/maid_arm_covers.json'
 
-/datum/greyscale_config/maid_arm_covers/worn
+/datum/greyscale_config/bubber_maid_arm_covers/worn
 	name = "Maid Arm Covers (Worn)"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/maid_costume_worn.dmi'
 
-/datum/greyscale_config/maid_costume
+/datum/greyscale_config/bubber_maid_costume
 	name = "Maid Costume"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/maid_costume.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/costumes/maid_costume.json'
 
-/datum/greyscale_config/maid_costume/worn
+/datum/greyscale_config/bubber_maid_costume/worn
 	name = "Maid Costume (Worn)"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/maid_costume_worn.dmi'
 
-/datum/greyscale_config/maid_headband
+/datum/greyscale_config/bubber_maid_headband
 	name = "Maid Headband"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/maid_costume.dmi'
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/costumes/maid_headband.json'
 
-/datum/greyscale_config/maid_headband/worn
+/datum/greyscale_config/bubber_maid_headband/worn
 	name = "Maid Headband (Worn)"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/maid_costume_worn.dmi'
 
@@ -1220,7 +1220,7 @@ TREK
 /datum/greyscale_config/sneakers/worn/teshari
 	name = "Sneakers (Worn, Teshari)"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/sneakers_teshari.dmi'
-digi
+
 /datum/greyscale_config/sneakers_orange/worn/teshari
 	name = "Orange Sneakers (Worn, Teshari)"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/sneakers_teshari.dmi'
@@ -1587,3 +1587,16 @@ digi
 /datum/greyscale_config/primitive_catgirl_gauntlets/worn
 	name = "Gauntlets (Worn)"
 	json_config = 'modular_skyrat/modules/GAGS/json_configs/primitive_catgirl_clothing/gauntlets_worn.json'
+
+/*
+*	DONKSOFT TURRET
+*/
+
+/datum/greyscale_config/turret
+	name = "Donksoft Turret (Deployed)"
+	icon_file = 'modular_skyrat/modules/magfed_turret/icons/turrets/cargo.dmi'
+	json_config = 'modular_skyrat/modules/GAGS/json_configs/turret/turret.json'
+
+/datum/greyscale_config/turret/toolbox
+	name = "Donksoft Turret"
+	json_config = 'modular_skyrat/modules/GAGS/json_configs/turret/turret_toolbox.json'

@@ -10,7 +10,7 @@
 	life_always()
 	var/is_head = is_head(owner.current)
 	if(!is_head && owner.current.get_organ_slot(ORGAN_SLOT_HEART) && !am_staked())
-		life_active(is_head)
+		INVOKE_ASYNC(src, PROC_REF(life_active), is_head)
 
 	SEND_SIGNAL(src, COMSIG_BLOODSUCKER_ON_LIFETICK, seconds_per_tick, times_fired)
 
@@ -21,8 +21,6 @@
 		return
 	if(owner.current.stat == CONSCIOUS && !HAS_TRAIT(owner.current, TRAIT_IMMOBILIZED) && !is_in_torpor())
 		INVOKE_ASYNC(src, PROC_REF(AdjustBloodVolume), -BLOODSUCKER_PASSIVE_BLOOD_DRAIN) // -.1 currently
-	INVOKE_ASYNC(src, PROC_REF(update_blood))
-	INVOKE_ASYNC(src, PROC_REF(HandleStarving))
 
 /datum/antagonist/bloodsucker/proc/life_active()
 	if(HandleHealing())
@@ -113,10 +111,7 @@
 			var/max_threshold = BLOOD_VOLUME_NORMAL * 2
 			var/modify_blood_gain = 1 - (already_drunk / max_threshold)
 			blood_for_leveling = max(blood_taken * modify_blood_gain, 0)
-		if(IS_VASSAL(target)) // Checks if the target is a vassal
-			blood_level_gain += blood_for_leveling / 4
-		else
-			blood_level_gain += blood_for_leveling
+		blood_level_gain += blood_for_leveling
 	return blood_taken
 
 /**
@@ -201,7 +196,7 @@
 		var/obj/item/bodypart/missing_bodypart = user.get_bodypart(missing_limb) // 2) Limb returns Damaged
 		missing_bodypart.brute_dam = missing_bodypart.max_damage
 		to_chat(user, span_notice("Your flesh knits as it regrows your [missing_bodypart]!"))
-		playsound(user, 'sound/magic/demon_consume.ogg', 50, TRUE)
+		playsound(user, 'sound/effects/magic/demon_consume.ogg', 50, TRUE)
 		return TRUE
 
 /*
@@ -231,16 +226,15 @@
 		bloodsuckeruser.cure_husk(CHANGELING_DRAIN)
 
 	bloodsuckeruser.cure_husk(BURN)
-	for(var/datum/wound/wound as anything in bloodsuckeruser.all_wounds)
-		wound.remove_wound()
+
 	if(bloodsuckeruser.get_organ_slot(ORGAN_SLOT_HEART))
-		bloodsuckeruser.regenerate_organs(regenerate_existing = FALSE)
+		bloodsuckeruser.regenerate_organs(remove_hazardous = FALSE)
 
 	if(!HAS_TRAIT(bloodsuckeruser, TRAIT_MASQUERADE))
-		var/obj/item/organ/internal/heart/current_heart = bloodsuckeruser.get_organ_slot(ORGAN_SLOT_HEART)
+		var/obj/item/organ/heart/current_heart = bloodsuckeruser.get_organ_slot(ORGAN_SLOT_HEART)
 		current_heart?.Stop()
 
-	var/obj/item/organ/internal/eyes/current_eyes = bloodsuckeruser.get_organ_slot(ORGAN_SLOT_EYES)
+	var/obj/item/organ/eyes/current_eyes = bloodsuckeruser.get_organ_slot(ORGAN_SLOT_EYES)
 	if(current_eyes && !(current_eyes.organ_flags & ORGAN_ROBOTIC))
 		current_eyes.flash_protect = max(initial(current_eyes.flash_protect) - 1, FLASH_PROTECTION_SENSITIVE)
 		current_eyes.color_cutoffs = BLOODSUCKER_SIGHT_COLOR_CUTOFF
@@ -261,8 +255,8 @@
 
 	// From [powers/panacea.dm]
 	var/list/bad_organs = list(
-		bloodsuckeruser.get_organ_by_type(/obj/item/organ/internal/body_egg),
-		bloodsuckeruser.get_organ_by_type(/obj/item/organ/internal/zombie_infection)
+		bloodsuckeruser.get_organ_by_type(/obj/item/organ/body_egg),
+		bloodsuckeruser.get_organ_by_type(/obj/item/organ/zombie_infection)
 	)
 	for(var/tumors in bad_organs)
 		var/obj/item/organ/yucky_organs = tumors
@@ -281,9 +275,9 @@
 /// FINAL DEATH
 /datum/antagonist/bloodsucker/proc/HandleDeath()
 	if(QDELETED(owner.current))
-		if(length(vassals))
-			free_all_vassals()
-		vassals = list()
+		if(length(ghouls))
+			free_all_ghouls()
+		ghouls = list()
 		return
 	// Fire Damage? (above double health)
 	if(owner.current.getFireLoss() >= owner.current.maxHealth * FINAL_DEATH_HEALTH_TO_BURN) // 337.5 burn with 135 maxHealth
@@ -293,6 +287,11 @@
 	if(is_in_torpor() || isbrain(owner.current))
 		return
 	check_begin_torpor(TORPOR_SKIP_CHECK_ALL)
+
+/datum/antagonist/bloodsucker/proc/HandleBlood()
+	INVOKE_ASYNC(src, PROC_REF(update_blood))
+	INVOKE_ASYNC(src, PROC_REF(HandleStarving))
+	return HANDLE_BLOOD_NO_OXYLOSS | HANDLE_BLOOD_NO_NUTRITION_DRAIN
 
 /datum/antagonist/bloodsucker/proc/HandleStarving() // I am thirsty for blood!
 	// Nutrition - The amount of blood is how full we are.
@@ -304,7 +303,7 @@
 	var/datum/status_effect/frenzy/status_effect = owner.current.has_status_effect(/datum/status_effect/frenzy)
 	if(bloodsucker_blood_volume >= frenzy_exit_threshold() && frenzied && status_effect?.duration == -1)
 		status_effect.duration = world.time + 10 SECONDS
-		owner.current.balloon_alert(owner.current, "Frenzy ends in 10 seconds!")
+		owner.current.balloon_alert(owner.current, "frenzy ends in 10 seconds!")
 	// BLOOD_VOLUME_BAD: [224] - Jitter
 	if(bloodsucker_blood_volume < BLOOD_VOLUME_BAD && prob(0.5) && !is_in_torpor() && !HAS_TRAIT(owner.current, TRAIT_MASQUERADE))
 		owner.current.set_timed_status_effect(3 SECONDS, /datum/status_effect/jitter, only_if_higher = TRUE)
@@ -349,15 +348,15 @@
 	owner.current.blood_volume = bloodsucker_blood_volume
 
 /// Turns the bloodsucker into a wacky talking head.
-/datum/antagonist/bloodsucker/proc/talking_head()
-	var/mob/living/poor_fucker = owner.current
+/datum/antagonist/bloodsucker/proc/talking_head(mob/target)
+	var/mob/living/poor_fucker = target
 	if(QDELETED(poor_fucker))
 		return
 	// Don't do anything if we're not actually inside a brain and a head
 	var/obj/item/bodypart/head/head = is_head(poor_fucker)
 	if(!head || poor_fucker.stat != DEAD || !poor_fucker.can_be_revived())
 		return
-	if(istype(poor_fucker.loc, /obj/item/organ/internal/brain))
+	if(istype(poor_fucker.loc, /obj/item/organ/brain))
 		RegisterSignal(poor_fucker.loc, COMSIG_QDELETING, PROC_REF(on_brain_remove))
 		RegisterSignal(poor_fucker.loc, COMSIG_ORGAN_BODYPART_REMOVED, PROC_REF(on_brain_remove))
 
@@ -386,7 +385,7 @@
 
 /datum/antagonist/bloodsucker/proc/on_brainmob_qdel()
 	SIGNAL_HANDLER
-	if(istype(owner.current.loc, /obj/item/organ/internal/brain))
+	if(istype(owner.current.loc, /obj/item/organ/brain))
 		cleanup_talking_head(owner.current.loc)
 	else
 		cleanup_talking_head()
@@ -399,7 +398,7 @@
 		return
 	unregister_body_signals()
 	unregister_sol_signals()
-	free_all_vassals()
+	free_all_ghouls()
 	DisableAllPowers(forced = TRUE)
 	if(!iscarbon(owner.current))
 		owner.current.gib(DROP_ITEMS)
@@ -408,7 +407,7 @@
 	var/mob/living/carbon/user = owner.current
 	owner.current.drop_all_held_items()
 	owner.current.unequip_everything()
-	user.remove_all_embedded_objects()
+	INVOKE_ASYNC(user, TYPE_PROC_REF(/mob/living/carbon, remove_all_embedded_objects))
 	playsound(owner.current, 'sound/effects/tendril_destroyed.ogg', 40, TRUE)
 
 	var/unique_death = SEND_SIGNAL(src, COMSIG_BLOODSUCKER_FINAL_DEATH)
@@ -421,7 +420,7 @@
 			span_warning("[user]'s skin crackles and dries, their skin and bones withering to dust. A hollow cry whips from what is now a sandy pile of remains."),
 			span_userdanger("Your soul escapes your withering body as the abyss welcomes you to your Final Death."),
 			span_hear("You hear a dry, crackling sound."))
-		addtimer(CALLBACK(user, TYPE_PROC_REF(/mob/living, dust)), 5 SECONDS, TIMER_UNIQUE|TIMER_STOPPABLE)
+		addtimer(CALLBACK(user, TYPE_PROC_REF(/atom/movable, dust)), 5 SECONDS, TIMER_UNIQUE|TIMER_STOPPABLE)
 		return
 	user.visible_message(
 		span_warning("[user]'s skin bursts forth in a spray of gore and detritus. A horrible cry echoes from what is now a wet pile of decaying meat."),
