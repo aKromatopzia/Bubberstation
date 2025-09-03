@@ -54,6 +54,39 @@
 	name = "Beret With Fancy Badge (Worn, Teshari)"
 	icon_file = 'modular_skyrat/modules/GAGS/icons/beret_teshari.dmi'
 
+//(SOFT)CAP
+/datum/greyscale_config/softcap
+	name = "Cap"
+	icon_file = 'modular_skyrat/modules/GAGS/icons/softcap.dmi'
+	json_config = 'modular_skyrat/modules/GAGS/json_configs/softcap/softcap.json'
+
+/datum/greyscale_config/softcap/worn
+	name = "Cap (Worn)"
+	json_config = 'modular_skyrat/modules/GAGS/json_configs/softcap/softcap_worn.json'
+
+/datum/greyscale_config/softcap_band
+	name = "Cap (Band)"
+	json_config = 'modular_skyrat/modules/GAGS/json_configs/softcap/softcap.json'
+
+/datum/greyscale_config/softcap_band/worn
+	name = "Cap (Band, Worn)"
+	json_config = 'modular_skyrat/modules/GAGS/json_configs/softcap/softcap_worn.json'
+
+/datum/greyscale_config/softcap_badge
+	name = "Cap (Badge)"
+	json_config = 'modular_skyrat/modules/GAGS/json_configs/softcap/softcap.json'
+
+/datum/greyscale_config/softcap_badge/worn
+	name = "Cap (Badge, Worn)"
+	json_config = 'modular_skyrat/modules/GAGS/json_configs/softcap/softcap_worn.json'
+
+/datum/greyscale_config/softcap_fancy
+	name = "Cap (Band, Badge, Worn)"
+	json_config = 'modular_skyrat/modules/GAGS/json_configs/softcap/softcap.json'
+
+/datum/greyscale_config/softcap_fancy/worn
+	name = "Cap (Band, Badge, Worn)"
+	json_config = 'modular_skyrat/modules/GAGS/json_configs/softcap/softcap_worn.json'
 
 //COWBOY
 /datum/greyscale_config/cowboy_wide

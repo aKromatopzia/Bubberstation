@@ -360,6 +360,24 @@
 	name = "Blastwave Peaked Cap"
 	item_path = /obj/item/clothing/head/blastwave/officer
 
+///softcap
+
+/datum/loadout_item/head/softcap
+	name = "Recolorable Softcap"
+	item_path = /obj/item/clothing/head/soft/greyscale
+
+/datum/loadout_item/head/softcap/badge
+	name = "Recolorable Badged Softcap"
+	item_path = /obj/item/clothing/head/soft/greyscale/badge
+
+/datum/loadout_item/head/softcap/band
+	name = "Recolorable Banded Softcap"
+	item_path = /obj/item/clothing/head/soft/greyscale/band
+
+/datum/loadout_item/head/softcap/fancy
+	name = "Recolorable Fancy Softcap"
+	item_path = /obj/item/clothing/head/soft/greyscale/fancy
+
 /*
 *	COWBOY
 */
