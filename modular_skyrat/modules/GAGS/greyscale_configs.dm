@@ -66,27 +66,27 @@
 
 /datum/greyscale_config/softcap_band
 	name = "Cap (Band)"
-	json_config = 'modular_skyrat/modules/GAGS/json_configs/softcap/softcap.json'
+	json_config = 'modular_skyrat/modules/GAGS/json_configs/softcap/softcap_band.json'
 
 /datum/greyscale_config/softcap_band/worn
 	name = "Cap (Band, Worn)"
-	json_config = 'modular_skyrat/modules/GAGS/json_configs/softcap/softcap_worn.json'
+	json_config = 'modular_skyrat/modules/GAGS/json_configs/softcap/softcap_band_worn.json'
 
 /datum/greyscale_config/softcap_badge
 	name = "Cap (Badge)"
-	json_config = 'modular_skyrat/modules/GAGS/json_configs/softcap/softcap.json'
+	json_config = 'modular_skyrat/modules/GAGS/json_configs/softcap/softcap_badge.json'
 
 /datum/greyscale_config/softcap_badge/worn
 	name = "Cap (Badge, Worn)"
-	json_config = 'modular_skyrat/modules/GAGS/json_configs/softcap/softcap_worn.json'
+	json_config = 'modular_skyrat/modules/GAGS/json_configs/softcap/softcap_badge_worn.json'
 
 /datum/greyscale_config/softcap_fancy
 	name = "Cap (Band, Badge, Worn)"
-	json_config = 'modular_skyrat/modules/GAGS/json_configs/softcap/softcap.json'
+	json_config = 'modular_skyrat/modules/GAGS/json_configs/softcap/softcap_fancy.json'
 
 /datum/greyscale_config/softcap_fancy/worn
 	name = "Cap (Band, Badge, Worn)"
-	json_config = 'modular_skyrat/modules/GAGS/json_configs/softcap/softcap_worn.json'
+	json_config = 'modular_skyrat/modules/GAGS/json_configs/softcap/softcap_fancy_worn.json'
 
 //COWBOY
 /datum/greyscale_config/cowboy_wide

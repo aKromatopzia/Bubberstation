@@ -1,0 +1,22 @@
+{
+	"softcap_fancy": [
+		{
+			"type": "icon_state",
+			"icon_state": "soft",
+			"blend_mode": "overlay",
+			"color_ids": [ 1 ]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "band",
+			"blend_mode": "overlay",
+			"color_ids": [ 2 ]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "badge",
+			"blend_mode": "overlay",
+			"color_ids": [ 3 ]
+		}
+	]
+}

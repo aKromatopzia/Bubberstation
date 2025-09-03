@@ -287,50 +287,41 @@
 	icon_state = "sonnensoldner_hat"
 	worn_y_offset = 4
 
-/obj/item/clothing/head/soft/greyscale
+/obj/item/clothing/head/softcap/greyscale
 	name = "recolourable softcap"
 	desc = "A cheap cap which comes in various colours"
 	icon = 'modular_skyrat/modules/GAGS/icons/softcap.dmi'
 	worn_icon = 'modular_skyrat/modules/GAGS/icons/softcap.dmi'
-	icon_state = "/obj/item/clothing/head/soft/greyscale"
+	icon_state = "/obj/item/clothing/head/softcap/greyscale"
 	post_init_icon_state = "softcap"
-
-	soft_type = "softcap"
-	soft_suffix = null
 
 	greyscale_config = /datum/greyscale_config/softcap
 	greyscale_config_worn = /datum/greyscale_config/softcap/worn
-	greyscale_colors = "#ffffff"
+	greyscale_colors = "#FFFFFF"
 	flags_1 = IS_PLAYER_COLORABLE_1
 
-/obj/item/clothing/head/soft/greyscale/badge
+/obj/item/clothing/head/softcap/greyscale/badge
 	name = "recolourable softcap w/ badge"
 	desc = "A cheap cap which comes in various colours. This one has a badge."
-	icon = 'modular_skyrat/modules/GAGS/icons/softcap.dmi'
-	worn_icon = 'modular_skyrat/modules/GAGS/icons/softcap.dmi'
-	icon_state = "/obj/item/clothing/head/soft/greyscale/badge"
+	icon_state = "/obj/item/clothing/head/softcap/greyscale/badge"
 	post_init_icon_state = "softcap_badge"
 	greyscale_config = /datum/greyscale_config/softcap_badge
 	greyscale_config_worn = /datum/greyscale_config/softcap_badge/worn
 	greyscale_colors = "#FFFFFF#055DFF"
 
-/obj/item/clothing/head/soft/greyscale/band
+/obj/item/clothing/head/softcap/greyscale/band
 	name = "recolourable softcap w/ band"
 	desc = "A cheap cap which comes in various colours. This one has a band."
-	icon = 'modular_skyrat/modules/GAGS/icons/softcap.dmi'
-	worn_icon = 'modular_skyrat/modules/GAGS/icons/softcap.dmi'
-	icon_state = "/obj/item/clothing/head/soft/greyscale/band"
+	icon_state = "/obj/item/clothing/head/softcap/greyscale/band"
 	post_init_icon_state = "softcap_band"
 	greyscale_config = /datum/greyscale_config/softcap_band
 	greyscale_config_worn = /datum/greyscale_config/softcap_band/worn
 	greyscale_colors = "#FFFFFF#055DFF"
 
-/obj/item/clothing/head/soft/greyscale/fancy
+/obj/item/clothing/head/softcap/greyscale/fancy
 	name = "recolourable softcap w/ band and badge"
 	desc = "A cheap cap which comes in various colours. This one has a band AND a badge!"
-	icon = 'modular_skyrat/modules/GAGS/icons/softcap.dmi'
-	worn_icon = 'modular_skyrat/modules/GAGS/icons/softcap.dmi'
-	icon_state = "/obj/item/clothing/head/soft/greyscale/fancy"
+	icon_state = "/obj/item/clothing/head/softcap/greyscale/fancy"
 	post_init_icon_state = "softcap_fancy"
 	greyscale_config = /datum/greyscale_config/softcap_fancy
 	greyscale_config_worn = /datum/greyscale_config/softcap_fancy/worn
