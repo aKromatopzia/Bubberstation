@@ -15,6 +15,7 @@
 		TRAIT_NO_UNDERWEAR,
 	)
 	digitigrade_customization = DIGITIGRADE_NEVER
+	blood_color_customization = BLOOD_COLOR_CHOICE
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | ERT_SPAWN | RACE_SWAP | SLIME_EXTRACT
 	payday_modifier = 1.0
 	mutanttongue = /obj/item/organ/tongue/teshari

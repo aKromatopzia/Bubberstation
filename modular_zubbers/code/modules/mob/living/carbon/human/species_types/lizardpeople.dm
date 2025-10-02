@@ -1,6 +1,7 @@
 /datum/species/lizard
 	name = "Tiziran Lizardperson"
 	//renames Lizardpeople to Tizirans for clarity.
+	blood_color_customization = BLOOD_COLOR_CHOICE
 
 /datum/species/lizard/on_bloodsucker_gain(mob/living/carbon/human/target, datum/species/current_species)
 	bodytemp_heat_damage_limit = BODYTEMP_HEAT_DAMAGE_LIMIT

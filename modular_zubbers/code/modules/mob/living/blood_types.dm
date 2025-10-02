@@ -46,6 +46,23 @@
 /datum/blood_type/nanite_slurry/alt_color/New(override, datum/blood_type/orig)
 	make_alt_color(override, orig)
 
+// For Vox
+/datum/blood_type/nitrogen
+	name = BLOOD_TYPE_N2
+	dna_string = "Vox DNA"
+	// reagent_type
+	color = BLOOD_COLOR_CYAN
+	recolor_blood_type = /datum/blood_type/nitrogen/alt_color
+
+/datum/blood_type/nitrogen/alt_color
+	abstract_type = /datum/blood_type/nitrogen
+
+/datum/blood_type/nitrogen/alt_color/type_key()
+	return /datum/blood_type/nitrogen
+
+/datum/blood_type/nitrogen/alt_color/New(override, datum/blood_type/orig)
+	make_alt_color(override, orig)
+
 /* blood type template for alt_colors
 /datum/blood_type/namehere
 	recolor_blood_type = /datum/blood_type/namehere/alt_color

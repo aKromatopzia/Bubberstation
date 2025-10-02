@@ -5,6 +5,7 @@
 		TRAIT_ANTENNAE,
 		TRAIT_MUTANT_COLORS,
 	)
+	blood_color_customization = BLOOD_COLOR_CHOICE
 
 /datum/species/moth/get_default_mutant_bodyparts()
 	return list(

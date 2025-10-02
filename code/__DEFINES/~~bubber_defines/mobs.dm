@@ -33,8 +33,16 @@
 #define BUTT_SPRITE_VOX "vox"
 #define BUTT_SPRITE_VULP "vulp"
 
+///species must use default blood reagent color
+#define BLOOD_COLOR_NEVER 0
+///species uses a different colour from its blood reagent, cannot choose
+#define BLOOD_COLOR_FORCED 1
+///species uses a different colour from its blood reagent, can choose
+#define BLOOD_COLOR_CHOICE 2
+
 #define BLOOD_TYPE_COPPER "CU"
 #define BLOOD_TYPE_NANITE_SLURRY "NS"
+#define BLOOD_TYPE_N2 "N2"
 
 #define AI_HOLOGRAM_MOTHROACH "Mothroach"
 #define	AI_HOLOGRAM_STOAT "Stoat"

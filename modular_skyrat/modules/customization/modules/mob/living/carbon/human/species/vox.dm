@@ -11,6 +11,7 @@
 		TRAIT_MUTANT_COLORS,
 	)
 	inherent_biotypes = MOB_ORGANIC|MOB_HUMANOID
+	blood_color_customization = BLOOD_COLOR_CHOICE
 	mutanttongue = /obj/item/organ/tongue/vox
 	mutantlungs = /obj/item/organ/lungs/nitrogen/vox
 	mutantbrain = /obj/item/organ/brain/cybernetic/cortical/vox

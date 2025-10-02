@@ -1,6 +1,6 @@
 //i dont enjoy this implementation, but we're also not going to figure out how to write a proper do-all replace_blood_type() without |some| help....
 
-GLOBAL_LIST_INIT(custom_blood_colors, list(
+/* GLOBAL_LIST_INIT(custom_blood_colors, list(
 	"Red/Human" = BLOOD_COLOR_RED,
 	"D.Green/Lizard" = BLOOD_COLOR_LIZARD,
 	"Green" = BLOOD_COLOR_GREEN,
@@ -10,7 +10,7 @@ GLOBAL_LIST_INIT(custom_blood_colors, list(
 	"Brown/Skrell" = BLOOD_COLOR_COPPER,
 	"White/Nanites" = BLOOD_COLOR_NANITE_SLURRY,
 	"Black" = BLOOD_COLOR_BLACK,
-))
+)) */
 
 /datum/quirk/item_quirk/unique_blood_color
 	name = "Blood Pigmentation"

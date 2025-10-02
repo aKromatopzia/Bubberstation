@@ -8,6 +8,7 @@
 		TRAIT_MUTANT_COLORS,
 	)
 	inherent_biotypes = MOB_ORGANIC|MOB_HUMANOID|MOB_BUG
+	blood_color_customization = BLOOD_COLOR_CHOICE
 	mutant_bodyparts = list()
 	mutanttongue = /obj/item/organ/tongue/insect
 	payday_modifier = 1.0
