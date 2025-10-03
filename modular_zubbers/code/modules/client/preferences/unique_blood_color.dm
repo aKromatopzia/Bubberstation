@@ -1,5 +1,3 @@
-///see modular_zubbers\code\modules\quirks\neutral_quirks\unique_blood_color.dm
-
 ///manual colour input
 /datum/preference/color/input_blood_color
 	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
@@ -60,23 +58,23 @@
 		return FALSE //don't make unique versions of normal blood
 	testing("passing to dye_blood() with args target = [target] & color_code = [color_code]")
 	target.dna.species.dye_blood(target = target, color_code = color_code)
-	return TRUE
 
 //here temporarily for ease of review
 /datum/species/proc/dye_blood(datum/source, mob/living/carbon/human/target, color_code, update_cached_blood_dna_info)
 	SIGNAL_HANDLER
-	var/datum/blood_type/new_blood = NONE
-	new_blood = get_blood_type("[target.dna.blood_type] ([color_code])") //for example, A-_#69af19
+	var/datum/blood_type/new_blood = get_blood_type("[target.dna.blood_type] ([color_code])") //for example, A-_#69af19
 	//check if blood type already exists before making new instance. in case somebody else is using the same color
 	if(isnull(new_blood))
+		NOTICE("creating new blood type \"[target.dna.blood_type] ([color_code])\" for [target.name]")
+		testing("creating new blood type \"[target.dna.blood_type] ([color_code])\" for [target.name]")
 		var/recolor_type = target.dna.blood_type.recolor_blood_type
 		testing("recolor_type = [recolor_type]")
 		new_blood = new recolor_type(override = color_code, orig = target.dna.blood_type)
 		GLOB.blood_types[new_blood.id] = new_blood
-	testing("new_blood = [new_blood]")
-	NOTICE("finalized new blood type [new_blood.id] for [target.name]")
+	testing("new_blood = [new_blood.id]")
+	testing("before: target.dna.species.exotic_bloodtype = [target.dna.species.exotic_bloodtype]")
 	target.dna.species.exotic_bloodtype = new_blood
-	testing("target.dna.species.exotic_bloodtype = [target.dna.species.exotic_bloodtype]")
+	testing("after: target.dna.species.exotic_bloodtype = [target.dna.species.exotic_bloodtype]")
+	testing("before: target.dna.blood_type = [target.dna.blood_type]")
 	target.set_blood_type(new_blood)
-	testing("target.dna.blood_type = [target.dna.blood_type]")
-	return TRUE
+	testing("after: target.dna.blood_type = [target.dna.blood_type]")
